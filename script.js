@@ -1,12 +1,16 @@
-const tipoMaterial = document.getElementById("tipoMaterial");
-const camposFlyer = document.getElementById("camposFlyer");
+document.addEventListener("DOMContentLoaded", function () {
 
-tipoMaterial.addEventListener("change", function () {
-    if (this.value === "Flyer") {
-        camposFlyer.classList.remove("oculto");
-    } else {
-        camposFlyer.classList.add("oculto");
-    }
+    const tipoMaterial = document.getElementById("tipoMaterial");
+    const camposFlyer = document.getElementById("camposFlyer");
+
+    tipoMaterial.addEventListener("change", function () {
+        if (this.value === "Flyer") {
+            camposFlyer.classList.remove("oculto");
+        } else {
+            camposFlyer.classList.add("oculto");
+        }
+    });
+
 });
 
 function enviarWhatsApp() {
@@ -20,32 +24,40 @@ function enviarWhatsApp() {
     const fechaEntrega = document.getElementById("fechaEntrega").value;
     const objetivo = document.getElementById("objetivo").value.trim();
 
-    const nombreEvento = document.getElementById("nombreEvento").value.trim();
-    const fechaEvento = document.getElementById("fechaEvento").value;
-    const horaEvento = document.getElementById("horaEvento").value;
-    const tecnico = document.getElementById("tecnico").value.trim();
-    const direccionEvento = document.getElementById("direccionEvento").value.trim();
+    const nombreEvento = document.getElementById("nombreEvento")?.value.trim() || "";
+    const ciudadEvento = document.getElementById("ciudadEvento")?.value.trim() || "";
+    const fechaEvento = document.getElementById("fechaEvento")?.value || "";
+    const horaEvento = document.getElementById("horaEvento")?.value || "";
+    const tecnico = document.getElementById("tecnico")?.value.trim() || "";
+    const direccionEvento = document.getElementById("direccionEvento")?.value.trim() || "";
 
-    if (!distribuidor || !ciudad || !tipo || !formato || !fechaEntrega || !objetivo) {
+    if (!distribuidor || !ciudad || !celularPublicidad || !tipo || !formato || !fechaEntrega || !objetivo) {
         alert("Por favor completa todos los campos obligatorios.");
         return;
     }
 
-    let detalleFlyer = "";
-
     if (tipo === "Flyer") {
-        detalleFlyer = `
-
-📌 DATOS DEL EVENTO
-Nombre del evento: ${nombreEvento || "No especificado"}
-Fecha del evento: ${fechaEvento || "No especificado"}
-Hora: ${horaEvento || "No especificado"}
-Técnico / Imparte: ${tecnico || "No especificado"}
-Ubicación: ${ubicacionEvento || "No especificado"}
-Dirección: ${direccionEvento || "No especificado"}`;
+        if (!nombreEvento || !ciudadEvento || !fechaEvento || !horaEvento || !tecnico || !direccionEvento) {
+            alert("Por favor completa todos los datos del evento para el flyer.");
+            return;
+        }
     }
 
-    const telefono = "526621234567";
+    let detalleEvento = "";
+
+    if (tipo === "Flyer") {
+        detalleEvento = `
+
+📌 DATOS DEL EVENTO
+Nombre del evento: ${nombreEvento}
+Ciudad del evento: ${ciudadEvento}
+Fecha del evento: ${fechaEvento}
+Hora del evento: ${horaEvento}
+Técnico / Imparte: ${tecnico}
+Dirección completa: ${direccionEvento}`;
+    }
+
+    const telefono = "526621234567"; // Cambia este número por el WhatsApp correcto
 
     const mensaje = `🎨 SOLICITUD DE MATERIALES GRÁFICOS
 
@@ -56,7 +68,7 @@ ${distribuidor}
 ${ciudad}
 
 📱 Celular para publicidad:
-${celularPublicidad || "No especificado"}
+${celularPublicidad}
 
 🖼️ Tipo de material:
 ${tipo}
@@ -65,16 +77,20 @@ ${tipo}
 ${formato}
 
 📐 Medidas / especificación:
-${medidas || "No especificado"}${detalleFlyer}
+${medidas || "No especificado"}${detalleEvento}
 
-📅 Fecha requerida:
+📅 Fecha requerida de entrega:
 ${fechaEntrega}
 
-🎯 Objetivo:
+🎯 Objetivo o uso:
 ${objetivo}
 
 📎 Nota:
-Las referencias, fotografías, logotipos o ejemplos pueden adjuntarse posteriormente en Trello.`;
+Las referencias, fotografías, logotipos o ejemplos pueden adjuntarse posteriormente en Trello.
 
-    window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`, "_blank");
+— Solicitud generada desde Verenize Marketing Request`;
+
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
 }
