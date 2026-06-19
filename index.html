@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Creativo Verenize</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+<div class="container">
+
+    <h1>🎨 Centro Creativo Verenize</h1>
+
+    <p class="intro">
+        Solicita tus materiales gráficos de forma rápida y organizada.
+    </p>
+
+    <form id="solicitudForm">
+
+        <label>Nombre del distribuidor</label>
+        <input type="text" id="distribuidor" required>
+
+        <label>Ciudad</label>
+        <input type="text" id="ciudad" required>
+
+        <label>Tipo de material</label>
+        <select id="tipoMaterial">
+            <option value="">Selecciona una opción</option>
+            <option>Flyer</option>
+            <option>Pendón</option>
+            <option>Tarjeta de presentación</option>
+            <option>Post para redes</option>
+            <option>Historia para redes</option>
+            <option>Imagen para WhatsApp</option>
+            <option>PDF Informativo</option>
+            <option>Promoción</option>
+            <option>Otro</option>
+        </select>
+
+        <label>Formato</label>
+        <select id="formato">
+            <option value="">Selecciona una opción</option>
+            <option>Digital</option>
+            <option>Impreso</option>
+        </select>
+
+        <label>Fecha requerida</label>
+        <input type="date" id="fechaEntrega">
+
+        <label>Objetivo del material</label>
+        <textarea id="objetivo" rows="4"></textarea>
+
+        <button type="button" onclick="enviarWhatsApp()">
+            Enviar Solicitud
+        </button>
+
+    </form>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
