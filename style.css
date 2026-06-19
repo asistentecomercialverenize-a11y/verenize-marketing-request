@@ -168,5 +168,16 @@ button:hover {
 
   .form-card {
     padding: 24px;
-  }
+.logo {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+}  }
 }
