@@ -83,7 +83,7 @@ ${fechaEntrega}
 ${objetivo}
 
 📎 Nota:
-Las referencias, fotografías, logotipos o ejemplos pueden adjuntarse posteriormente en Trello.
+Las referencias, fotografías, logotipos o ejemplos pueden adjuntarse posteriormente en Whatsapp.
 
 — Solicitud generada desde Verenize Marketing Request`;
 
