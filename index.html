@@ -45,7 +45,10 @@
                     <label>Ciudad *</label>
                     <input type="text" id="ciudad" placeholder="Ej. Hermosillo, Sonora">
                 </div>
-
+<div class="form-group">
+    <label>Celular que aparecerá en la publicidad</label>
+    <input type="tel" id="celularPublicidad" placeholder="Ej. 6621234567">
+</div>
                 <div class="form-group">
                     <label>Tipo de material *</label>
 
@@ -62,7 +65,39 @@
                         <option>Otro</option>
                     </select>
                 </div>
+<div id="camposFlyer" class="extra-fields oculto">
 
+    <div class="form-group">
+        <label>Nombre del evento</label>
+        <input type="text" id="nombreEvento" placeholder="Ej. Certificación Rizos Toluca">
+    </div>
+
+    <div class="form-group">
+        <label>Fecha del evento</label>
+        <input type="date" id="fechaEvento">
+    </div>
+
+    <div class="form-group">
+        <label>Hora del evento</label>
+        <input type="time" id="horaEvento">
+    </div>
+
+    <div class="form-group">
+        <label>Nombre del técnico / impartidor</label>
+        <input type="text" id="tecnico" placeholder="Ej. Claudia Mondaca">
+    </div>
+
+    <div class="form-group">
+        <label>Ubicación del evento</label>
+        <input type="text" id="ubicacionEvento" placeholder="Ej. Hotel Lucerna, Salón A">
+    </div>
+
+    <div class="form-group">
+        <label>Dirección completa</label>
+        <input type="text" id="direccionEvento" placeholder="Calle, número, colonia, ciudad">
+    </div>
+
+</div>
                 <div class="form-group">
                     <label>Formato *</label>
 
@@ -89,7 +124,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Objetivo o uso del material *</label>
+                    <label>Uso del material *</label>
 
                     <textarea
                         id="objetivo"
