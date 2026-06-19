@@ -1,20 +1,50 @@
 function enviarWhatsApp() {
-  const distribuidor = document.getElementById("distribuidor").value.trim();
-  const ciudad = document.getElementById("ciudad").value.trim();
-  const tipoMaterial = document.getElementById("tipoMaterial").value;
-  const formato = document.getElementById("formato").value;
-  const medidas = document.getElementById("medidas").value.trim();
-  const fechaEntrega = document.getElementById("fechaEntrega").value;
-  const objetivo = document.getElementById("objetivo").value.trim();
 
-  if (!distribuidor || !ciudad || !tipoMaterial || !formato || !fechaEntrega || !objetivo) {
-    alert("Por favor completa todos los campos obligatorios.");
-    return;
-  }
+    const distribuidor = document.getElementById("distribuidor").value.trim();
+    const ciudad = document.getElementById("ciudad").value.trim();
+    const tipoMaterial = document.getElementById("tipoMaterial").value;
+    const formato = document.getElementById("formato").value;
+    const medidas = document.getElementById("medidas").value.trim();
+    const fechaEntrega = document.getElementById("fechaEntrega").value;
+    const objetivo = document.getElementById("objetivo").value.trim();
 
-  const telefono = "526621234567"; // Cambia este número por el WhatsApp correcto
+    // VALIDACIONES
 
-  const mensaje = `🎨 SOLICITUD DE MATERIALES GRÁFICOS - VERENIZE
+    if (!distribuidor) {
+        alert("Ingresa el nombre del distribuidor.");
+        return;
+    }
+
+    if (!ciudad) {
+        alert("Ingresa la ciudad.");
+        return;
+    }
+
+    if (!tipoMaterial) {
+        alert("Selecciona el tipo de material.");
+        return;
+    }
+
+    if (!formato) {
+        alert("Selecciona el formato.");
+        return;
+    }
+
+    if (!fechaEntrega) {
+        alert("Selecciona una fecha requerida.");
+        return;
+    }
+
+    if (!objetivo) {
+        alert("Describe el objetivo del material.");
+        return;
+    }
+
+    // CAMBIAR POR EL NÚMERO OFICIAL
+    const telefono = "526623641909";
+
+    const mensaje =
+`🎨 SOLICITUD DE MATERIALES GRÁFICOS
 
 👤 Distribuidor:
 ${distribuidor}
@@ -28,18 +58,22 @@ ${tipoMaterial}
 📌 Formato:
 ${formato}
 
-📐 Medidas / especificación breve:
+📐 Medidas / Especificación:
 ${medidas || "No especificado"}
 
 📅 Fecha requerida:
 ${fechaEntrega}
 
-🎯 Objetivo o uso del material:
+🎯 Objetivo del material:
 ${objetivo}
 
 📎 Nota:
-El socio puede adjuntar referencias, fotografías, logotipos o ejemplos en la tarjeta de Trello si es necesario.`;
+Las referencias, fotografías, logotipos o ejemplos pueden adjuntarse posteriormente en Trello.
 
-  const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-  window.open(url, "_blank");
+— Solicitud generada desde Centro Creativo Verenize`;
+
+    const url =
+        `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
 }
