@@ -1,50 +1,54 @@
+const tipoMaterial = document.getElementById("tipoMaterial");
+const camposFlyer = document.getElementById("camposFlyer");
+
+tipoMaterial.addEventListener("change", function () {
+    if (this.value === "Flyer") {
+        camposFlyer.classList.remove("oculto");
+    } else {
+        camposFlyer.classList.add("oculto");
+    }
+});
+
 function enviarWhatsApp() {
 
     const distribuidor = document.getElementById("distribuidor").value.trim();
     const ciudad = document.getElementById("ciudad").value.trim();
-    const tipoMaterial = document.getElementById("tipoMaterial").value;
+    const celularPublicidad = document.getElementById("celularPublicidad").value.trim();
+    const tipo = document.getElementById("tipoMaterial").value;
     const formato = document.getElementById("formato").value;
     const medidas = document.getElementById("medidas").value.trim();
     const fechaEntrega = document.getElementById("fechaEntrega").value;
     const objetivo = document.getElementById("objetivo").value.trim();
 
-    // VALIDACIONES
+    const nombreEvento = document.getElementById("nombreEvento").value.trim();
+    const fechaEvento = document.getElementById("fechaEvento").value;
+    const horaEvento = document.getElementById("horaEvento").value;
+    const tecnico = document.getElementById("tecnico").value.trim();
+    const ubicacionEvento = document.getElementById("ubicacionEvento").value.trim();
+    const direccionEvento = document.getElementById("direccionEvento").value.trim();
 
-    if (!distribuidor) {
-        alert("Ingresa el nombre del distribuidor.");
+    if (!distribuidor || !ciudad || !tipo || !formato || !fechaEntrega || !objetivo) {
+        alert("Por favor completa todos los campos obligatorios.");
         return;
     }
 
-    if (!ciudad) {
-        alert("Ingresa la ciudad.");
-        return;
+    let detalleFlyer = "";
+
+    if (tipo === "Flyer") {
+        detalleFlyer = `
+
+📌 DATOS DEL EVENTO
+Nombre del evento: ${nombreEvento || "No especificado"}
+Fecha del evento: ${fechaEvento || "No especificado"}
+Hora: ${horaEvento || "No especificado"}
+Técnico / Imparte: ${tecnico || "No especificado"}
+Ubicación: ${ubicacionEvento || "No especificado"}
+Dirección: ${direccionEvento || "No especificado"}`;
     }
 
-    if (!tipoMaterial) {
-        alert("Selecciona el tipo de material.");
-        return;
-    }
+    const telefono = "526621234567";
 
-    if (!formato) {
-        alert("Selecciona el formato.");
-        return;
-    }
-
-    if (!fechaEntrega) {
-        alert("Selecciona una fecha requerida.");
-        return;
-    }
-
-    if (!objetivo) {
-        alert("Describe el objetivo del material.");
-        return;
-    }
-
-    // CAMBIAR POR EL NÚMERO OFICIAL
-    const telefono = "526623641909";
-
-    const mensaje =
-`🎨 SOLICITUD DE MATERIALES GRÁFICOS
+    const mensaje = `🎨 SOLICITUD DE MATERIALES GRÁFICOS
 
 👤 Distribuidor:
 ${distribuidor}
@@ -52,28 +56,26 @@ ${distribuidor}
 📍 Ciudad:
 ${ciudad}
 
+📱 Celular para publicidad:
+${celularPublicidad || "No especificado"}
+
 🖼️ Tipo de material:
-${tipoMaterial}
+${tipo}
 
 📌 Formato:
 ${formato}
 
-📐 Medidas / Especificación:
-${medidas || "No especificado"}
+📐 Medidas / especificación:
+${medidas || "No especificado"}${detalleFlyer}
 
 📅 Fecha requerida:
 ${fechaEntrega}
 
-🎯 Objetivo del material:
+🎯 Objetivo:
 ${objetivo}
 
 📎 Nota:
-Las referencias, fotografías, logotipos o ejemplos pueden adjuntarse posteriormente en Trello.
+Las referencias, fotografías, logotipos o ejemplos pueden adjuntarse posteriormente en Trello.`;
 
-— Solicitud generada desde Centro Creativo Verenize`;
-
-    const url =
-        `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-
-    window.open(url, "_blank");
+    window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`, "_blank");
 }
