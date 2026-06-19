@@ -1,5 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
+function obtenerValor(id) {
+    const elemento = document.getElementById(id);
+    return elemento ? elemento.value.trim() : "";
+}
 
+document.addEventListener("DOMContentLoaded", function () {
     const tipoMaterial = document.getElementById("tipoMaterial");
     const camposFlyer = document.getElementById("camposFlyer");
 
@@ -12,16 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-
 });
 
-function obtenerValor(id) {
-    const elemento = document.getElementById(id);
-    return elemento ? elemento.value.trim() : "";
-}
-
 function enviarWhatsApp() {
-
     const distribuidor = obtenerValor("distribuidor");
     const ciudad = obtenerValor("ciudad");
     const celularPublicidad = obtenerValor("celularPublicidad");
@@ -38,16 +35,9 @@ function enviarWhatsApp() {
     const tecnico = obtenerValor("tecnico");
     const direccionEvento = obtenerValor("direccionEvento");
 
-    if (!distribuidor || !ciudad || !celularPublicidad || !tipo || !formato || !fechaEntrega || !objetivo) {
-        alert("Por favor completa todos los campos obligatorios.");
+    if (!distribuidor || !ciudad || !tipo || !formato) {
+        alert("Completa nombre del distribuidor, ciudad, tipo de material y formato.");
         return;
-    }
-
-    if (tipo === "Flyer") {
-        if (!nombreEvento || !ciudadEvento || !fechaEvento || !horaEvento || !tecnico || !direccionEvento) {
-            alert("Por favor completa todos los datos obligatorios del evento.");
-            return;
-        }
     }
 
     let detalleEvento = "";
@@ -56,15 +46,15 @@ function enviarWhatsApp() {
         detalleEvento = `
 
 📌 DATOS DEL EVENTO
-Nombre del evento: ${nombreEvento}
-Ciudad del evento: ${ciudadEvento}
-Fecha del evento: ${fechaEvento}
-Hora del evento: ${horaEvento}
-Técnico / Imparte: ${tecnico}
-Dirección completa del evento: ${direccionEvento}`;
+Nombre del evento: ${nombreEvento || "No especificado"}
+Ciudad del evento: ${ciudadEvento || "No especificado"}
+Fecha del evento: ${fechaEvento || "No especificado"}
+Hora del evento: ${horaEvento || "No especificado"}
+Técnico / Imparte: ${tecnico || "No especificado"}
+Dirección completa del evento: ${direccionEvento || "No especificado"}`;
     }
 
-    const telefono = "52663641090"; // Cambia este número
+    const telefono = "526621234567"; // Cambia este número por el WhatsApp real
 
     const mensaje = `🎨 SOLICITUD DE MATERIALES GRÁFICOS
 
@@ -75,7 +65,7 @@ ${distribuidor}
 ${ciudad}
 
 📱 Celular para publicidad:
-${celularPublicidad}
+${celularPublicidad || "No especificado"}
 
 🖼️ Tipo de material:
 ${tipo}
@@ -87,17 +77,16 @@ ${formato}
 ${medidas || "No especificado"}${detalleEvento}
 
 📅 Fecha requerida de entrega:
-${fechaEntrega}
+${fechaEntrega || "No especificado"}
 
 🎯 Objetivo o uso:
-${objetivo}
+${objetivo || "No especificado"}
 
 📎 Nota:
-Las referencias, fotografías, logotipos o ejemplos pueden adjuntarse posteriormente en Trello.
+Las referencias, fotografías, logotipos o ejemplos pueden adjuntarse posteriormente en Whatsapp.
 
 — Solicitud generada desde Verenize Marketing Request`;
 
     const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-
     window.location.href = url;
 }
