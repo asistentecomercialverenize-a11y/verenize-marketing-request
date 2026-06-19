@@ -1,1 +1,28 @@
+function enviarWhatsApp() {
+    const distribuidor = document.getElementById("distribuidor").value;
+    const ciudad = document.getElementById("ciudad").value;
+    const tipoMaterial = document.getElementById("tipoMaterial").value;
+    const formato = document.getElementById("formato").value;
+    const fechaEntrega = document.getElementById("fechaEntrega").value;
+    const objetivo = document.getElementById("objetivo").value;
 
+    const telefono = "526621234567"; // Cambia este número por el WhatsApp correcto
+
+    const mensaje = `🎨 NUEVA SOLICITUD DE MATERIAL GRÁFICO
+
+Distribuidor: ${distribuidor}
+Ciudad: ${ciudad}
+
+Tipo de material: ${tipoMaterial}
+Formato: ${formato}
+Fecha requerida: ${fechaEntrega}
+
+Objetivo / uso del material:
+${objetivo}
+
+Nota:
+El socio puede adjuntar referencias, logos o ejemplos en la tarjeta de Trello si es necesario.`;
+
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, "_blank");
+}
