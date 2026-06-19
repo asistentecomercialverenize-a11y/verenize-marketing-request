@@ -24,7 +24,6 @@ function enviarWhatsApp() {
     const fechaEvento = document.getElementById("fechaEvento").value;
     const horaEvento = document.getElementById("horaEvento").value;
     const tecnico = document.getElementById("tecnico").value.trim();
-    const ubicacionEvento = document.getElementById("ubicacionEvento").value.trim();
     const direccionEvento = document.getElementById("direccionEvento").value.trim();
 
     if (!distribuidor || !ciudad || !tipo || !formato || !fechaEntrega || !objetivo) {
