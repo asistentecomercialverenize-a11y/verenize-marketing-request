@@ -1,82 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitud de materiales gráficos | Verenize</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitud de materiales gráficos | Verenize</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
+  <main class="page">
 
-    <main class="page">
+    <header class="header">
+      <div>
+        <h1>Solicitud de materiales gráficos</h1>
+        <p>Completa la información para solicitar tus diseños de forma clara y organizada.</p>
+      </div>
 
-        <section class="hero">
-            <div>
-                <h1>Solicitud de materiales gráficos</h1>
-                <p>Completa la información para solicitar tus diseños de forma clara y organizada.</p>
-            </div>
+      <div class="logo">
+        <span class="logo-v">V</span>
+        <span>Verenize</span>
+      </div>
+    </header>
 
-            <div class="brand">
-                <span class="brand-icon">V</span>
-                <span>Verenize</span>
-            </div>
-        </section>
+    <section class="form-card">
+      <form id="solicitudForm">
 
-        <section class="card">
-            <form id="solicitudForm">
+        <div class="form-group">
+          <label for="distribuidor">Nombre del distribuidor *</label>
+          <input type="text" id="distribuidor" placeholder="Escribe el nombre del distribuidor" required>
+        </div>
 
-                <label>Nombre del distribuidor *</label>
-                <input type="text" id="distribuidor" placeholder="Escribe el nombre del distribuidor" required>
+        <div class="form-group">
+          <label for="ciudad">Ciudad *</label>
+          <input type="text" id="ciudad" placeholder="Escribe la ciudad" required>
+        </div>
 
-                <label>Ciudad *</label>
-                <input type="text" id="ciudad" placeholder="Escribe la ciudad" required>
+        <div class="form-group">
+          <label for="tipoMaterial">Tipo de material *</label>
+          <select id="tipoMaterial" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Flyer">Flyer</option>
+            <option value="Pendón">Pendón</option>
+            <option value="Tarjeta de presentación">Tarjeta de presentación</option>
+            <option value="Post para redes">Post para redes</option>
+            <option value="Historia para redes">Historia para redes</option>
+            <option value="Imagen para WhatsApp">Imagen para WhatsApp</option>
+            <option value="PDF informativo">PDF informativo</option>
+            <option value="Promoción">Promoción</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
 
-                <label>Tipo de material *</label>
-                <select id="tipoMaterial" required>
-                    <option value="">Selecciona una opción</option>
-                    <option value="Flyer">Flyer</option>
-                    <option value="Pendón">Pendón</option>
-                    <option value="Tarjeta de presentación">Tarjeta de presentación</option>
-                    <option value="Post para redes">Post para redes</option>
-                    <option value="Historia para redes">Historia para redes</option>
-                    <option value="Imagen para WhatsApp">Imagen para WhatsApp</option>
-                    <option value="PDF Informativo">PDF Informativo</option>
-                    <option value="Promoción">Promoción</option>
-                    <option value="Otro">Otro</option>
-                </select>
+        <div class="form-group">
+          <label for="formato">Formato *</label>
+          <select id="formato" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Digital">Digital</option>
+            <option value="Impreso">Impreso</option>
+          </select>
+        </div>
 
-                <label>Formato *</label>
-                <select id="formato" required>
-                    <option value="">Selecciona una opción</option>
-                    <option value="Digital">Digital</option>
-                    <option value="Impreso">Impreso</option>
-                </select>
+        <div class="form-group">
+          <label for="medidas">Medidas / especificación breve</label>
+          <input type="text" id="medidas" placeholder="Ej. 160x60 cm, historia Instagram, PDF, WhatsApp">
+        </div>
 
-                <label>Medidas / especificación breve</label>
-                <input type="text" id="medidas" placeholder="Ej. 160x60 cm, historia Instagram, PDF, WhatsApp">
+        <div class="form-group">
+          <label for="fechaEntrega">Fecha requerida *</label>
+          <input type="date" id="fechaEntrega" required>
+        </div>
 
-                <label>Fecha requerida *</label>
-                <input type="date" id="fechaEntrega" required>
+        <div class="form-group">
+          <label for="objetivo">Objetivo o uso del material *</label>
+          <textarea id="objetivo" rows="5" placeholder="Ej. Promocionar certificación, anunciar promoción, uso interno, invitar clientes..." required></textarea>
+        </div>
 
-                <label>Objetivo o uso del material *</label>
-                <textarea id="objetivo" rows="5" placeholder="Ej. Promocionar certificación, anunciar promoción, uso interno, invitar clientes..." required></textarea>
+        <div class="info-box">
+          Puedes adjuntar referencias, fotografías, logotipos o ejemplos en la tarjeta de Trello si es necesario.
+        </div>
 
-                <div class="note">
-                    Puedes adjuntar referencias, fotografías, logotipos o ejemplos en la tarjeta de Trello si es necesario.
-                </div>
+        <button type="button" onclick="enviarWhatsApp()">
+          Enviar solicitud por WhatsApp
+        </button>
 
-                <button type="button" onclick="enviarWhatsApp()">
-                    Enviar solicitud por WhatsApp
-                </button>
+      </form>
+    </section>
 
-            </form>
-        </section>
+  </main>
 
-    </main>
-
-<script src="script.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
