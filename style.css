@@ -145,5 +145,17 @@ button:hover{
     .form-card{
         padding:22px;
     }
+.extra-fields {
+    background: #faf7ff;
+    border: 1px solid #e6d6ff;
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
 
+.oculto {
+    display: none;
+}
 }
