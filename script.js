@@ -64,7 +64,7 @@ Técnico / Imparte: ${tecnico}
 Dirección completa del evento: ${direccionEvento}`;
     }
 
-    const telefono = "526626002755"; // Cambia este número
+    const telefono = "52663641090"; // Cambia este número
 
     const mensaje = `🎨 SOLICITUD DE MATERIALES GRÁFICOS
 
