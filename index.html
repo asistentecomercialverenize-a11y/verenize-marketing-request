@@ -1,97 +1,126 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solicitud de materiales gráficos | Verenize</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Solicitud de materiales gráficos | Verenize</title>
 
-  <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <main class="page">
 
-    <header class="header">
-      <div>
-        <h1>Solicitud de materiales gráficos</h1>
-        <p>Completa la información para solicitar tus diseños de forma clara y organizada.</p>
-      </div>
+    <main class="page">
 
-   <div class="logo">
-    <img src="LOGO+SLOGAN(NEGRO) (5).png" alt="Verenize">
-</div>
-    </header>
+        <header class="header">
 
-    <section class="form-card">
-      <form id="solicitudForm">
+            <div>
+                <h1>Solicitud de materiales gráficos</h1>
 
-        <div class="form-group">
-          <label for="distribuidor">Nombre del distribuidor *</label>
-          <input type="text" id="distribuidor" placeholder="Escribe el nombre del distribuidor" required>
-        </div>
+                <p>
+                    Completa la información necesaria para solicitar materiales
+                    publicitarios, promocionales o de comunicación para tu salón,
+                    evento o distribuidora.
+                </p>
+            </div>
 
-        <div class="form-group">
-          <label for="ciudad">Ciudad *</label>
-          <input type="text" id="ciudad" placeholder="Escribe la ciudad" required>
-        </div>
+            <div class="logo">
+                <img src="LOGO+SLOGAN(NEGRO) (5).png" alt="Verenize">
+            </div>
 
-        <div class="form-group">
-          <label for="tipoMaterial">Tipo de material *</label>
-          <select id="tipoMaterial" required>
-            <option value="">Selecciona una opción</option>
-            <option value="Flyer">Flyer</option>
-            <option value="Pendón">Pendón</option>
-            <option value="Tarjeta de presentación">Tarjeta de presentación</option>
-            <option value="Post para redes">Post para redes</option>
-            <option value="Historia para redes">Historia para redes</option>
-            <option value="Imagen para WhatsApp">Imagen para WhatsApp</option>
-            <option value="PDF informativo">PDF informativo</option>
-            <option value="Promoción">Promoción</option>
-            <option value="Otro">Otro</option>
-          </select>
-        </div>
+        </header>
 
-        <div class="form-group">
-          <label for="formato">Formato *</label>
-          <select id="formato" required>
-            <option value="">Selecciona una opción</option>
-            <option value="Digital">Digital</option>
-            <option value="Impreso">Impreso</option>
-          </select>
-        </div>
+        <section class="form-card">
 
-        <div class="form-group">
-          <label for="medidas">Medidas / especificación breve</label>
-          <input type="text" id="medidas" placeholder="Ej. 160x60 cm, historia Instagram, PDF, WhatsApp">
-        </div>
+            <form id="solicitudForm">
 
-        <div class="form-group">
-          <label for="fechaEntrega">Fecha requerida *</label>
-          <input type="date" id="fechaEntrega" required>
-        </div>
+                <div class="form-group">
+                    <label>Nombre del distribuidor *</label>
+                    <input type="text" id="distribuidor" placeholder="Ej. Jocelin Beauty Studio">
+                </div>
 
-        <div class="form-group">
-          <label for="objetivo">Objetivo o uso del material *</label>
-          <textarea id="objetivo" rows="5" placeholder="Ej. Promocionar certificación, anunciar promoción, uso interno, invitar clientes..." required></textarea>
-        </div>
+                <div class="form-group">
+                    <label>Ciudad *</label>
+                    <input type="text" id="ciudad" placeholder="Ej. Hermosillo, Sonora">
+                </div>
 
-        <div class="info-box">
-          Puedes adjuntar referencias, fotografías, logotipos o ejemplos en la tarjeta de Trello si es necesario.
-        </div>
+                <div class="form-group">
+                    <label>Tipo de material *</label>
 
-        <button type="button" onclick="enviarWhatsApp()">
-          Enviar solicitud por WhatsApp
-        </button>
+                    <select id="tipoMaterial">
+                        <option value="">Selecciona una opción</option>
+                        <option>Flyer</option>
+                        <option>Pendón</option>
+                        <option>Tarjeta de presentación</option>
+                        <option>Post para redes</option>
+                        <option>Historia para redes</option>
+                        <option>Imagen para WhatsApp</option>
+                        <option>PDF Informativo</option>
+                        <option>Promoción</option>
+                        <option>Otro</option>
+                    </select>
+                </div>
 
-      </form>
-    </section>
+                <div class="form-group">
+                    <label>Formato *</label>
 
-  </main>
+                    <select id="formato">
+                        <option value="">Selecciona una opción</option>
+                        <option>Digital</option>
+                        <option>Impreso</option>
+                    </select>
+                </div>
 
-  <script src="./script.js"></script>
+                <div class="form-group">
+                    <label>Medidas o especificación breve</label>
+
+                    <input
+                        type="text"
+                        id="medidas"
+                        placeholder="Ej. Flyer para Instagram, Pendón 160x60 cm, Tarjeta personal">
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha requerida *</label>
+
+                    <input type="date" id="fechaEntrega">
+                </div>
+
+                <div class="form-group">
+                    <label>Objetivo o uso del material *</label>
+
+                    <textarea
+                        id="objetivo"
+                        placeholder="Describe brevemente para qué será utilizado el material."
+                        rows="5"></textarea>
+                </div>
+
+                <div class="info-box">
+
+                    <strong>Importante:</strong><br><br>
+
+                    Puedes adjuntar referencias, fotografías, logotipos,
+                    capturas de ejemplo o archivos complementarios en la tarjeta
+                    de Trello para agilizar el desarrollo del material.
+
+                </div>
+
+                <button
+                    type="button"
+                    onclick="enviarWhatsApp()">
+                    Enviar solicitud por WhatsApp
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
 </body>
+
 </html>
