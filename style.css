@@ -1,45 +1,172 @@
-function enviarWhatsApp() {
-    const distribuidor = document.getElementById("distribuidor").value;
-    const ciudad = document.getElementById("ciudad").value;
-    const tipoMaterial = document.getElementById("tipoMaterial").value;
-    const formato = document.getElementById("formato").value;
-    const medidas = document.getElementById("medidas").value;
-    const fechaEntrega = document.getElementById("fechaEntrega").value;
-    const objetivo = document.getElementById("objetivo").value;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    if (!distribuidor || !ciudad || !tipoMaterial || !formato || !fechaEntrega || !objetivo) {
-        alert("Por favor completa todos los campos obligatorios.");
-        return;
-    }
+html {
+  font-family: 'Montserrat', Arial, sans-serif;
+}
 
-    const telefono = "526621234567"; // Cambia este número por el WhatsApp correcto
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top right, #ead8ff 0%, transparent 32%),
+    linear-gradient(135deg, #fbf8ff 0%, #ffffff 55%, #f4ebff 100%);
+  color: #1f1230;
+}
 
-    const mensaje = `🎨 SOLICITUD DE MATERIALES GRÁFICOS - VERENIZE
+.page {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 46px 20px;
+}
 
-👤 Distribuidor:
-${distribuidor}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 34px;
+}
 
-📍 Ciudad:
-${ciudad}
+.header h1 {
+  font-size: 42px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #201033;
+  margin-bottom: 12px;
+}
 
-🖼️ Tipo de material:
-${tipoMaterial}
+.header p {
+  font-size: 16px;
+  color: #5f5270;
+  line-height: 1.6;
+  max-width: 600px;
+}
 
-📌 Formato:
-${formato}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #6b28b8;
+  font-size: 30px;
+  font-weight: 800;
+  white-space: nowrap;
+}
 
-📐 Medidas / especificación breve:
-${medidas || "No especificado"}
+.logo-v {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #5a1ca8, #9b4dff);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-📅 Fecha requerida:
-${fechaEntrega}
+.form-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #eadcff;
+  border-radius: 24px;
+  padding: 36px;
+  box-shadow: 0 20px 50px rgba(77, 34, 120, 0.14);
+}
 
-🎯 Objetivo o uso del material:
-${objetivo}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
 
-📎 Nota:
-El socio puede adjuntar referencias, fotografías, logotipos o ejemplos en la tarjeta de Trello si es necesario.`;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, "_blank");
+label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #28173b;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid #d9cfe8;
+  border-radius: 14px;
+  background: #ffffff;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 15px;
+  color: #251735;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #7b35c8;
+  box-shadow: 0 0 0 4px rgba(123, 53, 200, 0.13);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.info-box {
+  background: #f5efff;
+  border: 1px solid #dfc8ff;
+  border-radius: 16px;
+  padding: 16px 18px;
+  color: #4d3369;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+button {
+  width: 100%;
+  border: none;
+  border-radius: 16px;
+  padding: 18px;
+  background: linear-gradient(90deg, #6121c3, #9a42ff);
+  color: white;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 25px rgba(98, 33, 195, 0.25);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 30px 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header h1 {
+    font-size: 32px;
+  }
+
+  .logo {
+    font-size: 26px;
+  }
+
+  .form-card {
+    padding: 24px;
+  }
 }
