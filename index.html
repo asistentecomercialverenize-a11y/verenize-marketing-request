@@ -4,145 +4,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Solicitud de materiales gráficos | Verenize</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <main class="page">
+<main class="page">
 
-        <header class="header">
+    <header class="header">
+        <div>
+            <h1>Solicitud de materiales gráficos</h1>
+            <p>
+                Completa la información necesaria para solicitar materiales publicitarios,
+                promocionales o de comunicación.
+            </p>
+        </div>
 
-            <div>
-                <h1>Solicitud de materiales gráficos</h1>
+        <div class="logo">
+            <img src="LOGO+SLOGAN(NEGRO) (5).png" alt="Verenize">
+        </div>
+    </header>
 
-                <p>
-                    Completa la información necesaria para solicitar materiales
-                    publicitarios, promocionales o de comunicación personalizados.
-                </p>
+    <section class="form-card">
+
+        <form id="solicitudForm">
+
+            <div class="form-group">
+                <label>Nombre del distribuidor <span class="required">*</span></label>
+                <input type="text" id="distribuidor" placeholder="Ej. Jocelin Beauty Studio" required>
             </div>
 
-            <div class="logo">
-                <img src="LOGO+SLOGAN(NEGRO) (5).png" alt="Verenize">
+            <div class="form-group">
+                <label>Ciudad <span class="required">*</span></label>
+                <input type="text" id="ciudad" placeholder="Ej. Hermosillo, Sonora" required>
             </div>
 
-        </header>
+            <div class="form-group">
+                <label>Celular que aparecerá en la publicidad <span class="required">*</span></label>
+                <input type="tel" id="celularPublicidad" placeholder="Ej. 6621234567" required>
+            </div>
 
-        <section class="form-card">
+            <div class="form-group">
+                <label>Tipo de material <span class="required">*</span></label>
+                <select id="tipoMaterial" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="Flyer">Flyer</option>
+                    <option value="Pendón">Pendón</option>
+                    <option value="Tarjeta de presentación">Tarjeta de presentación</option>
+                    <option value="Post para redes">Post para redes</option>
+                    <option value="Historia para redes">Historia para redes</option>
+                    <option value="Imagen para WhatsApp">Imagen para WhatsApp</option>
+                    <option value="PDF Informativo">PDF Informativo</option>
+                    <option value="Promoción">Promoción</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
 
-            <form id="solicitudForm">
+            <div id="camposFlyer" class="extra-fields oculto">
+
+                <h3>Datos del evento</h3>
 
                 <div class="form-group">
-                    <label>Nombre del distribuidor *</label>
-                    <input type="text" id="Nombre del socio comercial" 
-
+                    <label>Nombre del evento <span class="required">*</span></label>
+                    <input type="text" id="nombreEvento" placeholder="Ej. Certificación Rizos Toluca">
                 </div>
 
                 <div class="form-group">
-                    <label>Ciudad *</label>
-                    <input type="text" id="ciudad" placeholder="Ej. Hermosillo, Sonora">
-                </div>
-<div class="form-group">
-    <label>Celular que aparecerá en la publicidad</label>
-    <input type="tel" id="celularPublicidad" placeholder="Ej. 6621234567">
-</div>
-                <div class="form-group">
-                    <label>Tipo de material *</label>
-
-                    <select id="tipoMaterial">
-                        <option value="">Selecciona una opción</option>
-                        <option>Flyer</option>
-                        <option>Pendón</option>
-                        <option>Tarjeta de presentación</option>
-                        <option>Post para redes</option>
-                        <option>Historia para redes</option>
-                        <option>Imagen para WhatsApp</option>
-                        <option>PDF Informativo</option>
-                        <option>Promoción</option>
-                        <option>Otro</option>
-                    </select>
-                </div>
-<div id="camposFlyer" class="extra-fields oculto">
-
-    <div class="form-group">
-        <label>Nombre del evento</label>
-        <input type="text" id="nombreEvento" placeholder="Ej. Certificación Rizos Toluca">
-    </div>
-
-    <div class="form-group">
-        <label>Fecha del evento</label>
-        <input type="date" id="fechaEvento">
-    </div>
-
-    <div class="form-group">
-        <label>Hora del evento</label>
-        <input type="time" id="horaEvento">
-    </div>
-
-    <div class="form-group">
-        <label>Nombre del técnico / impartidor</label>
-        <input type="text" id="tecnico" placeholder="Ej. Tenico profesional Ana P">
-    </div>
-
-
-    <div class="form-group">
-        <label>Dirección completa</label>
-        <input type="text" id="direccionEvento" placeholder="Calle, número, colonia, ciudad, CP">
-    </div>
-
-</div>
-                <div class="form-group">
-                    <label>Formato *</label>
-
-                    <select id="formato">
-                        <option value="">Selecciona una opción</option>
-                        <option>Digital</option>
-                        <option>Impreso</option>
-                    </select>
+                    <label>Ciudad del evento <span class="required">*</span></label>
+                    <input type="text" id="ciudadEvento" placeholder="Ej. Toluca, Estado de México">
                 </div>
 
                 <div class="form-group">
-                    <label>Medidas o especificación breve</label>
-
-                    <input
-                        type="text"
-                        id="medidas"
-                        placeholder="Ej. Flyer para Instagram, Pendón 160x60 cm, Tarjeta personal">
+                    <label>Fecha del evento <span class="required">*</span></label>
+                    <input type="date" id="fechaEvento">
                 </div>
 
                 <div class="form-group">
-                    <label>Fecha requerida *</label>
-
-                    <input type="date" id="fechaEntrega">
+                    <label>Hora del evento <span class="required">*</span></label>
+                    <input type="time" id="horaEvento">
                 </div>
 
                 <div class="form-group">
-                    <label>Uso del material *</label>
-
-                    <textarea
-                        id="objetivo"
-                        placeholder="Describe brevemente para qué será utilizado el material."
-                        rows="5"></textarea>
+                    <label>Nombre del técnico / impartidor <span class="required">*</span></label>
+                    <input type="text" id="tecnico" placeholder="Ej. Claudia Mondaca">
                 </div>
 
+                <div class="form-group">
+                    <label>Dirección completa del evento <span class="required">*</span></label>
+                    <input type="text" id="direccionEvento" placeholder="Ej. Hotel Lucerna, Blvd. Morelos 267">
+                </div>
 
-                <button
-                    type="button"
-                    onclick="enviarWhatsApp()">
-                    Enviar solicitud por WhatsApp
-                </button>
+            </div>
 
-            </form>
+            <div class="form-group">
+                <label>Formato <span class="required">*</span></label>
+                <select id="formato" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="Digital">Digital</option>
+                    <option value="Impreso">Impreso</option>
+                </select>
+            </div>
 
-        </section>
+            <div class="form-group">
+                <label>Medidas o especificación breve</label>
+                <input type="text" id="medidas" placeholder="Ej. Pendón 160x60 cm, historia Instagram, PDF">
+            </div>
 
-    </main>
+            <div class="form-group">
+                <label>Fecha requerida de entrega <span class="required">*</span></label>
+                <input type="date" id="fechaEntrega" required>
+            </div>
 
-    <script src="script.js"></script>
+            <div class="form-group">
+                <label>Objetivo o uso del material <span class="required">*</span></label>
+                <textarea id="objetivo" rows="5" placeholder="Describe brevemente para qué será utilizado el material." required></textarea>
+            </div>
+
+            <div class="info-box">
+                <strong>Importante:</strong><br>
+                Puedes adjuntar referencias, fotografías, logotipos, capturas de ejemplo o archivos complementarios en Trello.
+            </div>
+
+            <button type="button" onclick="enviarWhatsApp()">
+                Enviar solicitud por WhatsApp
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
