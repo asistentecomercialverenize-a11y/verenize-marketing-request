@@ -155,8 +155,8 @@ button:hover{
 
     <div class="form-card">
 
-        <label>Nombre del distribuidor <span class="required">*</span></label>
-        <input id="distribuidor" required>
+        <label>Nombre del socio comercial <span class="required">*</span></label>
+        <input id="socio comercial" required>
 
         <label>Ciudad <span class="required">*</span></label>
         <input id="ciudad" placeholder="Ej. Hermosillo, Sonora" required>
@@ -238,7 +238,7 @@ function mostrarCamposEvento(){
 }
 
 function enviarWhatsapp(){
-    const distribuidor = document.getElementById("distribuidor").value.trim();
+    const Socio comercial = document.getElementById("socio comercial").value.trim();
     const ciudad = document.getElementById("ciudad").value.trim();
     const celular = document.getElementById("celular").value.trim();
     const tipo = document.getElementById("tipo").value;
