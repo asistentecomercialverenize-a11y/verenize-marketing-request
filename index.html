@@ -1,132 +1,452 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solicitud de materiales gráficos | Verenize</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedidos Verenize</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{font-family:'Montserrat',sans-serif;}
+
+body{
+    background:#f4f4f4;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:14px;
+    overflow-x:auto;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    margin-bottom:30px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    width:360px;
+    max-width:100%;
+    height:auto;
+}
+
+.header-info{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+input{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:7px;
+    font-size:15px;
+}
+
+.total-arriba{
+    font-size:21px;
+    font-weight:700;
+    border:3px solid #111;
+    padding:12px 22px;
+    background:#fafafa;
+}
+
+.reembolso-arriba{
+    font-size:15px;
+    font-weight:500;
+    margin-top:5px;
+}
+
+.buscador{
+    width:100%;
+    max-width:500px;
+    padding:12px;
+    margin-bottom:20px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:8px;
+    text-align:center;
+}
+
+th{
+    background:#efefef;
+    font-weight:600;
+}
+
+td.producto{
+    text-align:left;
+    min-width:280px;
+}
+
+.foto{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    border-radius:8px;
+    background:white;
+}
+
+input[type="number"]{
+    width:85px;
+}
+
+.total-box{
+    text-align:right;
+    font-size:24px;
+    font-weight:700;
+    margin-top:20px;
+}
+
+.reembolso-box{
+    font-size:18px;
+    font-weight:500;
+    margin-top:6px;
+}
+
+.resumen{
+    margin-top:25px;
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    background:#fafafa;
+}
+
+.resumen h3{
+    margin-top:0;
+}
+
+button{
+    border:0;
+    padding:13px 20px;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.enviar{
+    background:#25D366;
+    color:white;
+}
+
+.limpiar{
+    background:#777;
+    color:white;
+}
+
+@media(max-width:800px){
+    body{padding:8px;}
+    .container{padding:12px;}
+    .logo{width:260px;}
+    .total-arriba{font-size:18px;}
+    table{font-size:12px;}
+}
+</style>
 </head>
 
 <body>
-<main class="page">
 
-  <header class="header">
-    <div>
-      <h1>Solicitud de materiales gráficos</h1>
-      <p>Completa la información necesaria para solicitar materiales publicitarios, promocionales o de comunicación.</p>
+<div class="container">
+
+    <div class="header">
+        <div>
+            <img class="logo" src="LOGO+SLOGAN(NEGRO) (5).png" alt="Verenize">
+        </div>
+
+        <div class="header-info">
+            <input id="socio" placeholder="Socio comercial">
+            <input id="fecha" type="date">
+
+            <div class="total-arriba">
+                <div>TOTAL ACUMULADO: $<span id="totalArriba">0.00</span></div>
+                <div class="reembolso-arriba">
+                    Total Reembolso: $<span id="reembolsoArriba">0.00</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="logo">
-      <img src="LOGO+SLOGAN(NEGRO) (5).png" alt="Verenize">
+    <input
+        type="text"
+        id="buscador"
+        class="buscador"
+        placeholder="Buscar producto..."
+        onkeyup="filtrarProductos()"
+    >
+
+    <table>
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Producto</th>
+                <th>Precio Distribuidor</th>
+                <th>Precio Subdistribuidor</th>
+                <th>Pzas x Caja</th>
+                <th>Cant. Pzas</th>
+                <th>Cant. Cajas</th>
+                <th>Desc.</th>
+                <th>Importe</th>
+            </tr>
+        </thead>
+
+        <tbody id="tabla"></tbody>
+    </table>
+
+    <div class="total-box">
+        <div>TOTAL ACUMULADO: $<span id="total">0.00</span></div>
+        <div class="reembolso-box">
+            Total Reembolso: $<span id="reembolso">0.00</span>
+        </div>
     </div>
-  </header>
 
-  <section class="form-card">
-    <form id="solicitudForm">
+    <div class="resumen">
+        <h3>Resumen del Pedido</h3>
+        <div id="resumenPedido">No hay productos seleccionados.</div>
+    </div>
 
-      <div class="form-group">
-        <label>Nombre del distribuidor <span class="required">*</span></label>
-        <input type="text" id="Socio Comercial" 
-      </div>
+    <button class="enviar" onclick="enviarWhatsapp()">Enviar pedido por WhatsApp</button>
+    <button class="limpiar" onclick="limpiar()">Limpiar pedido</button>
 
-      <div class="form-group">
-        <label>Ciudad <span class="required">*</span></label>
-        <input type="text" id="ciudad" placeholder="Ej. Hermosillo, Sonora" required>
-      </div>
+</div>
 
-      <div class="form-group">
-        <label>Celular que aparecerá en la publicidad <span class="required">*</span></label>
-        <input type="tel" id="celularPublicidad" placeholder="Ej. 6621234567" required>
-      </div>
+<script>
+const whatsapp = "526623641909";
+const metaReembolso = 104400;
 
-      <div class="form-group">
-        <label>Tipo de material <span class="required">*</span></label>
-        <select id="tipoMaterial" required>
-          <option value="">Selecciona una opción</option>
-          <option value="Flyer">Flyer</option>
-          <option value="Pendón">Pendón</option>
-          <option value="Tarjeta de presentación">Tarjeta de presentación</option>
-          <option value="Post para redes">Post para redes</option>
-          <option value="Historia para redes">Historia para redes</option>
-          <option value="Imagen para WhatsApp">Imagen para WhatsApp</option>
-          <option value="PDF Informativo">PDF Informativo</option>
-          <option value="Promoción">Promoción</option>
-          <option value="Otro">Otro</option>
-        </select>
-      </div>
+const productos = [
+["Tratamiento de Keratina VP8 1000 ml",1800,2500,16,true,"Trat_Proteina_1000ml.png"],
+["Tratamiento de Keratina VP12 1000 ml",1800,2500,16,true,"Trat_Proteina_1000ml.png"],
+["Kit de Keratina Brasileña 300 ml",800,1200,24,true,"Trat_Proteina_300ml.png"],
+["Kit de Keratina Brasileña 100 ml",350,350,96,false,"Trat_Proteina_100ml.png"],
 
-      <div id="camposFlyer" class="extra-fields oculto">
-        <h3>Datos del evento para flyer</h3>
+["Vereplex Pro No. 1 500 ml",280,360,48,true,"Vereplex_No1_500ml.png"],
+["Kit Vereplex 500 ml",800,1200,24,false,"Vereplex_No1_500ml.png"],
+["Vereplex Pro No. 2 500 ml",250,350,24,true,"Vereplex_No2_500ml.png"],
 
-        <div class="form-group">
-          <label>Nombre del evento <span class="required">*</span></label>
-          <input type="text" id="nombreEvento" placeholder="Ej. Certificación Rizos Toluca">
-        </div>
+["Shampoo Purificante 1000 ml",350,416,16,true,"Shampoo_Purificante_1000ml.png"],
 
-        <div class="form-group">
-          <label>Ciudad del evento <span class="required">*</span></label>
-          <input type="text" id="ciudadEvento" placeholder="Ej. Toluca, Estado de México">
-        </div>
+["Shampoo de Mantenimiento 500 ml",160,200,36,true,"Shampoo_mant_500ml.png"],
+["Acondicionador de Mantenimiento 500 ml",160,200,36,true,"Acondicionador_Mant_500ml.png"],
 
-        <div class="form-group">
-          <label>Fecha del evento <span class="required">*</span></label>
-          <input type="date" id="fechaEvento">
-        </div>
+["Shampoo de Mantenimiento 1000 ml",280,360,16,true,"Shampoo_Mant_1000ml.png"],
+["Acondicionador de Mantenimiento 1000 ml",280,360,16,true,"Acondicionador_Mant_1000ml.png"],
 
-        <div class="form-group">
-          <label>Hora del evento <span class="required">*</span></label>
-          <input type="time" id="horaEvento">
-        </div>
+["Kit de Mantenimiento 1000 ml",450,616,16,true,"Shampoo_Mant_1000ml.png"],
+["Kit de Mantenimiento 500 ml",290,360,36,true,"Shampoo_mant_500ml.png"],
+["Kit de Mantenimiento 100 ml",120,120,96,false,"Shampoo_Mant_100ml.png"],
 
-        <div class="form-group">
-          <label>Nombre del técnico / impartidor <span class="required">*</span></label>
-          <input type="text" id="tecnico" placeholder="Ej. Tecnico Profesional Ana M.">
-        </div>
+["Tratamiento Sérum de Argán 100 ml",200,280,48,true,"Trat_SerumArgan_100ml.png"],
+["Tratamiento Sérum de Argán 50 ml",120,120,63,false,"Trat_SerumArgan_50ml.png"],
 
-        <div class="form-group">
-          <label>Dirección completa del evento <span class="required">*</span></label>
-          <input type="text" id="direccionEvento" placeholder="Lugar, calle, colonia, ciudad, C.P.">
-        </div>
-      </div>
+["Tratamiento Leave In 300 ml",150,200,48,true,"Trat_LeaveIn_300ml.png"],
+["Tratamiento Leave In 100 ml",85,85,96,false,"Trat_LeaveIn_100ml.png"],
 
-      <div class="form-group">
-        <label>Formato <span class="required">*</span></label>
-        <select id="formato" required>
-          <option value="">Selecciona una opción</option>
-          <option value="Digital">Digital</option>
-          <option value="Impreso">Impreso</option>
-        </select>
-      </div>
+["Crema Hidratante para Rizos 300 ml",130,190,48,true,"Crema_Hidratante_Rizos_300ml.png"],
+["Gel Hidratante para Rizos 300 ml",145,200,48,true,"ButterGel_Hidratante_Rizos_300ml.png"],
 
-      <div class="form-group">
-        <label>Medidas o especificación breve</label>
-        <input type="text" id="medidas" placeholder="Ej. Pendón 160x60 cm, historia Instagram, PDF">
-      </div>
+["Shot de Reparación Instantánea 12 ml",80,80,48,false,"Shot_Reparacion_12ml.png"],
+["Caja Shot de Reparación Instantánea",360,480,36,false,"Caja_Ampolletas.png"],
 
-      <div class="form-group">
-        <label>Fecha requerida de entrega de material <span class="required">*</span></label>
-        <input type="date" id="fechaEntrega" required>
-      </div>
+["Secadora V LUX NEGRA",2500,3150,10,true,"Secadora_V-Lux_Negra.png"],
+["Secadora V LUX BLANCA",2500,3150,10,true,"Secadora_V-Lux_Blanca.png"],
+["Plancha de Titanio",1200,1575,20,true,"Plancha_Titanio.png"],
 
-      <div class="form-group">
-        <label>Objetivo o uso del material <span class="required">*</span></label>
-        <textarea id="objetivo" rows="5" placeholder="Describe brevemente para qué será utilizado el material." required></textarea>
-      </div>
+["Peine de Carbón",25,42,50,true,"Peine_Carbon.png"],
+["Cepillo Cuadrado",100,140,12,true,"Cepillo_Cuadrado.png"],
+["Cepillo Redondo",160,200,10,true,"Cepillo_Redondo.png"],
+["Brocha",25,42,50,true,"Brocha.png"],
 
-      <div class="info-box">
-        <strong>Importante:</strong><br>
-        Puedes adjuntar referencias, fotografías, logotipos, capturas de ejemplo o archivos complementarios en Whatsapp.
-      </div>
+["Kimono",250,350,20,false,"Kimono negro.png"],
 
-      <button type="button" onclick="enviarWhatsApp()">
-        Enviar solicitud por WhatsApp
-      </button>
+["Mascarilla Mágica Nutritiva 100 ml",85,120,96,true,"Mascarilla_Magica_100ml.png"],
+["Tratamiento Sérum de Argán 50 ml",120,150,96,true,"Trat_SerumArgan_50ml.png"],
+["Mascarilla Mágica Nutritiva 500 ml",210,294,24,true,"Mascarilla_Magica_500ml.png"],
 
-    </form>
-  </section>
+["Set de Viaje para Cuidado del Cabello",480,580,10,false,"Set_de_viaje.png"],
+["Kit Vereplex PRO Sachet 30 ml",70,90,1,false,"Vereplex_No1_120ml.png"]
+];
 
-</main>
+function cargarTabla(){
+    const tabla = document.getElementById("tabla");
+    tabla.innerHTML = "";
 
-<script src="script.js"></script>
+    productos.forEach((p,i)=>{
+        tabla.innerHTML += `
+        <tr>
+            <td><img class="foto" src="${p[5]}" alt="${p[0]}"></td>
+            <td class="producto">${p[0]}</td>
+            <td>$${p[1]}</td>
+            <td>$${p[2]}</td>
+            <td>${p[3]}</td>
+            <td>
+                <input type="number" min="0" value="0" id="cantidad${i}" oninput="calcular()">
+            </td>
+            <td>
+                <input type="number" min="0" value="0" id="cajasInput${i}" oninput="calcular()">
+            </td>
+            <td>${p[4] ? "10%" : "-"}</td>
+            <td>$<span id="importe${i}">0.00</span></td>
+        </tr>`;
+    });
+}
+
+function calcular(){
+    let total = 0;
+    let resumenHTML = "";
+
+    productos.forEach((p,i)=>{
+        let cantPzas = Number(document.getElementById(`cantidad${i}`).value) || 0;
+        let cantCajas = Number(document.getElementById(`cajasInput${i}`).value) || 0;
+
+        let totalPiezas = cantPzas + (cantCajas * p[3]);
+
+        let importe = 0;
+        let precioAplicado = "";
+        let descuentoTexto = "";
+
+        if(totalPiezas >= p[3]){
+            importe = totalPiezas * p[1];
+            precioAplicado = "Distribuidor";
+        }else{
+            importe = totalPiezas * p[2];
+            precioAplicado = "Subdistribuidor";
+
+            if(p[4] && totalPiezas > 0){
+                importe = importe * 0.90;
+                descuentoTexto = " con 10% desc.";
+            }
+        }
+
+        document.getElementById(`importe${i}`).innerText = importe.toFixed(2);
+
+        if(totalPiezas > 0){
+            resumenHTML += `
+            <div style="margin-bottom:10px;">
+                <strong>${p[0]}</strong><br>
+                Piezas capturadas: ${cantPzas} |
+                Cajas capturadas: ${cantCajas} |
+                Total piezas: ${totalPiezas} |
+                Precio aplicado: ${precioAplicado}${descuentoTexto} |
+                Total: $${importe.toFixed(2)}
+            </div>`;
+        }
+
+        total += importe;
+    });
+
+    if(resumenHTML === ""){
+        resumenHTML = "No hay productos seleccionados.";
+    }
+
+    let reembolso = total > metaReembolso ? total - metaReembolso : 0;
+
+    document.getElementById("total").innerText = total.toFixed(2);
+    document.getElementById("totalArriba").innerText = total.toFixed(2);
+    document.getElementById("reembolso").innerText = reembolso.toFixed(2);
+    document.getElementById("reembolsoArriba").innerText = reembolso.toFixed(2);
+    document.getElementById("resumenPedido").innerHTML = resumenHTML;
+}
+
+function filtrarProductos(){
+    let filtro = document.getElementById("buscador").value.toLowerCase();
+    let filas = document.querySelectorAll("#tabla tr");
+
+    filas.forEach(fila=>{
+        let producto = fila.querySelector(".producto").innerText.toLowerCase();
+
+        if(producto.includes(filtro)){
+            fila.style.display = "";
+        }else{
+            fila.style.display = "none";
+        }
+    });
+}
+
+function enviarWhatsapp(){
+    let socio = document.getElementById("socio").value;
+    let fecha = document.getElementById("fecha").value;
+    let total = document.getElementById("total").innerText;
+    let reembolso = document.getElementById("reembolso").innerText;
+
+    let mensaje = `Hola, quiero realizar este pedido Verenize:%0A%0A`;
+    mensaje += `Socio comercial: ${socio}%0A`;
+    mensaje += `Fecha de pedido: ${fecha}%0A%0A`;
+
+    productos.forEach((p,i)=>{
+        let cantPzas = Number(document.getElementById(`cantidad${i}`).value) || 0;
+        let cantCajas = Number(document.getElementById(`cajasInput${i}`).value) || 0;
+        let totalPiezas = cantPzas + (cantCajas * p[3]);
+        let importe = document.getElementById(`importe${i}`).innerText;
+
+        if(totalPiezas > 0){
+            mensaje += `Producto: ${p[0]}%0A`;
+            mensaje += `Piezas capturadas: ${cantPzas}%0A`;
+            mensaje += `Cajas capturadas: ${cantCajas}%0A`;
+            mensaje += `Total piezas: ${totalPiezas}%0A`;
+
+            if(totalPiezas >= p[3]){
+                mensaje += `Precio aplicado: Distribuidor $${p[1]}%0A`;
+            }else{
+                mensaje += `Precio aplicado: Subdistribuidor $${p[2]}`;
+
+                if(p[4]){
+                    mensaje += ` | Desc. 10%`;
+                }
+
+                mensaje += `%0A`;
+            }
+
+            mensaje += `Importe: $${importe}%0A%0A`;
+        }
+    });
+
+    mensaje += `TOTAL ACUMULADO: $${total}%0A`;
+    mensaje += `TOTAL REEMBOLSO: $${reembolso}`;
+
+    window.open(`https://wa.me/${whatsapp}?text=${mensaje}`,"_blank");
+}
+
+function limpiar(){
+    productos.forEach((p,i)=>{
+        document.getElementById(`cantidad${i}`).value = 0;
+        document.getElementById(`cajasInput${i}`).value = 0;
+    });
+
+    document.getElementById("buscador").value = "";
+    filtrarProductos();
+    calcular();
+}
+
+document.getElementById("fecha").valueAsDate = new Date();
+cargarTabla();
+calcular();
+</script>
+
 </body>
 </html>
+```
