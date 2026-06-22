@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function enviarWhatsApp() {
-    const distribuidor = obtenerValor("distribuidor");
+    const socio comercial = obtenerValor("socio comercial");
     const ciudad = obtenerValor("ciudad");
     const celularPublicidad = obtenerValor("celularPublicidad");
     const tipo = obtenerValor("tipoMaterial");
@@ -35,8 +35,8 @@ function enviarWhatsApp() {
     const tecnico = obtenerValor("tecnico");
     const direccionEvento = obtenerValor("direccionEvento");
 
-    if (!distribuidor || !ciudad || !tipo || !formato) {
-        alert("Completa nombre del distribuidor, ciudad, tipo de material y formato.");
+    if (!Socio comercial || !ciudad || !tipo || !formato) {
+        alert("Completa nombre del socio comercial, ciudad, tipo de material y formato.");
         return;
     }
 
@@ -58,8 +58,8 @@ Dirección completa del evento: ${direccionEvento || "No especificado"}`;
 
     const mensaje = `🎨 SOLICITUD DE MATERIALES GRÁFICOS
 
-👤 Distribuidor:
-${distribuidor}
+👤Socio Comercial:
+${Socio comercial)
 
 📍 Ciudad:
 ${ciudad}
