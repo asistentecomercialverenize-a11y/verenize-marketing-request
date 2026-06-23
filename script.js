@@ -1,92 +1,74 @@
-function obtenerValor(id) {
-    const elemento = document.getElementById(id);
-    return elemento ? elemento.value.trim() : "";
+const whatsapp = "526623641909";
+
+function mostrarCamposEvento(){
+
+    const tipo = document.getElementById("tipo").value;
+
+    if(
+        tipo === "Flyer de evento" ||
+        tipo === "Invitación / convocatoria"
+    ){
+        document.getElementById("camposEvento")
+        .classList.remove("hidden");
+    }
+    else{
+        document.getElementById("camposEvento")
+        .classList.add("hidden");
+    }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const tipoMaterial = document.getElementById("tipoMaterial");
-    const camposFlyer = document.getElementById("camposFlyer");
+function enviarWhatsapp(){
 
-    if (tipoMaterial && camposFlyer) {
-        tipoMaterial.addEventListener("change", function () {
-            if (this.value === "Flyer") {
-                camposFlyer.classList.remove("oculto");
-            } else {
-                camposFlyer.classList.add("oculto");
-            }
-        });
-    }
-});
+    let mensaje = "";
 
-function enviarWhatsApp() {
-    const socio comercial = obtenerValor("socio comercial");
-    const ciudad = obtenerValor("ciudad");
-    const celularPublicidad = obtenerValor("celularPublicidad");
-    const tipo = obtenerValor("tipoMaterial");
-    const formato = obtenerValor("formato");
-    const medidas = obtenerValor("medidas");
-    const fechaEntrega = obtenerValor("fechaEntrega");
-    const objetivo = obtenerValor("objetivo");
+    mensaje += "SOLICITUD DE MATERIAL GRAFICO%0A%0A";
 
-    const nombreEvento = obtenerValor("nombreEvento");
-    const ciudadEvento = obtenerValor("ciudadEvento");
-    const fechaEvento = obtenerValor("fechaEvento");
-    const horaEvento = obtenerValor("horaEvento");
-    const tecnico = obtenerValor("tecnico");
-    const direccionEvento = obtenerValor("direccionEvento");
+    mensaje += "Socio Comercial: "
+        + document.getElementById("socio").value + "%0A";
 
-    if (!Socio comercial || !ciudad || !tipo || !formato) {
-        alert("Completa nombre del socio comercial, ciudad, tipo de material y formato.");
-        return;
-    }
+    mensaje += "Ciudad: "
+        + document.getElementById("ciudad").value + "%0A";
 
-    let detalleEvento = "";
+    mensaje += "Celular: "
+        + document.getElementById("celular").value + "%0A";
 
-    if (tipo === "Flyer") {
-        detalleEvento = `
+    mensaje += "Tipo de material: "
+        + document.getElementById("tipo").value + "%0A";
 
-📌 DATOS DEL EVENTO
-Nombre del evento: ${nombreEvento || "No especificado"}
-Ciudad del evento: ${ciudadEvento || "No especificado"}
-Fecha del evento: ${fechaEvento || "No especificado"}
-Hora del evento: ${horaEvento || "No especificado"}
-Técnico / Imparte: ${tecnico || "No especificado"}
-Dirección completa del evento: ${direccionEvento || "No especificado"}`;
+    if(
+        document.getElementById("tipo").value === "Flyer de evento" ||
+        document.getElementById("tipo").value === "Invitación / convocatoria"
+    ){
+
+        mensaje += "%0A--- DATOS DEL EVENTO ---%0A";
+
+        mensaje += "Evento: "
+            + document.getElementById("evento").value + "%0A";
+
+        mensaje += "Tecnico: "
+            + document.getElementById("tecnico").value + "%0A";
+
+        mensaje += "Fecha: "
+            + document.getElementById("fechaEvento").value + "%0A";
+
+        mensaje += "Hora: "
+            + document.getElementById("horaEvento").value + "%0A";
+
+        mensaje += "Direccion: "
+            + document.getElementById("direccion").value + "%0A";
     }
 
-    const telefono = "526621234567"; // Cambia este número por el WhatsApp real
+    mensaje += "%0AProducto / Promocion:%0A";
+    mensaje += document.getElementById("tema").value + "%0A%0A";
 
-    const mensaje = `🎨 SOLICITUD DE MATERIALES GRÁFICOS
+    mensaje += "Texto:%0A";
+    mensaje += document.getElementById("texto").value + "%0A%0A";
 
-👤Socio Comercial:
-${Socio comercial)
+    mensaje += "Notas:%0A";
+    mensaje += document.getElementById("notas").value;
 
-📍 Ciudad:
-${ciudad}
-
-📱 Celular para publicidad:
-${celularPublicidad || "No especificado"}
-
-🖼️ Tipo de material:
-${tipo}
-
-📌 Formato:
-${formato}
-
-📐 Medidas / especificación:
-${medidas || "No especificado"}${detalleEvento}
-
-📅 Fecha requerida de entrega:
-${fechaEntrega || "No especificado"}
-
-🎯 Objetivo o uso:
-${objetivo || "No especificado"}
-
-📎 Nota:
-Las referencias, fotografías, logotipos o ejemplos pueden adjuntarse posteriormente en Whatsapp.
-
-— Solicitud generada desde Verenize Marketing Request`;
-
-    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-    window.location.href = url;
+    window.open(
+        `https://wa.me/${whatsapp}?text=${mensaje}`,
+        "_blank"
+    );
 }
