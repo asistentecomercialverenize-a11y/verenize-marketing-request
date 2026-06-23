@@ -1,75 +1,91 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solicitud de materiales gráficos</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
 <body>
 
 <div class="container">
 
-<div class="header">
-    <div>
-        <h1>Solicitud de materiales gráficos</h1>
-        <div class="subtitle">
-            Completa la información necesaria para solicitar materiales publicitarios.
+    <div class="header">
+        <div>
+            <h1>Solicitud de materiales gráficos</h1>
+            <p>Completa la información necesaria para solicitar materiales publicitarios, promocionales o de comunicación.</p>
         </div>
+
+        <img src="LOGO+SLOGAN(NEGRO) (5).png" class="logo" alt="Verenize">
     </div>
 
-    <img class="logo" src="LOGO+SLOGAN(NEGRO) (5).png">
-</div>
+    <div class="form-card">
 
-<div class="form-card">
+        <label>Nombre del socio comercial <span>*</span></label>
+        <input id="socio" type="text">
 
-<label>Nombre del socio comercial *</label>
-<input id="socio">
+        <label>Ciudad <span>*</span></label>
+        <input id="ciudad" type="text" placeholder="Ej. Hermosillo, Sonora">
 
-<label>Ciudad *</label>
-<input id="ciudad">
+        <label>Celular que aparecerá en la publicidad <span>*</span></label>
+        <input id="celular" type="text" placeholder="Ej. 6621234567">
 
-<label>Celular que aparecerá en la publicidad *</label>
-<input id="celular">
+        <label>Tipo de material <span>*</span></label>
+        <select id="tipo" onchange="mostrarCamposEvento()">
+            <option value="">Selecciona una opción</option>
+            <option value="Flyer promocional">Flyer promocional</option>
+            <option value="Historia para redes">Historia para redes</option>
+            <option value="Post para redes">Post para redes</option>
+            <option value="Flyer de evento">Flyer de evento</option>
+            <option value="Invitación / convocatoria">Invitación / convocatoria</option>
+            <option value="Otro">Otro</option>
+        </select>
 
-<label>Tipo de material *</label>
-<select id="tipo" onchange="mostrarCamposEvento()">
-    <option value="">Selecciona una opción</option>
-    <option value="Flyer promocional">Flyer promocional</option>
-    <option value="Historia para redes">Historia para redes</option>
-    <option value="Post para redes">Post para redes</option>
-    <option value="Flyer de evento">Flyer de evento</option>
-    <option value="Invitación / convocatoria">Invitación / convocatoria</option>
-</select>
+        <div id="camposEvento" class="event-box hidden">
 
-<div id="camposEvento" class="hidden">
+            <h3>Datos del evento</h3>
 
-<label>Nombre del evento *</label>
-<input id="evento">
+            <label>Nombre del evento <span>*</span></label>
+            <input id="evento" type="text" placeholder="Ej. Certificación de Rizos">
 
-<label>Nombre del técnico *</label>
-<input id="tecnico">
+            <label>Nombre del técnico <span>*</span></label>
+            <input id="tecnico" type="text" placeholder="Ej. Claudia Mondaca">
 
-<label>Fecha del evento *</label>
-<input id="fechaEvento" type="date">
+            <label>Fecha del evento <span>*</span></label>
+            <input id="fechaEvento" type="date">
 
-<label>Hora del evento *</label>
-<input id="horaEvento" type="time">
+            <label>Hora del evento <span>*</span></label>
+            <input id="horaEvento" type="time">
 
-<label>Dirección completa *</label>
-<input id="direccion">
+            <label>Dirección completa <span>*</span></label>
+            <input id="direccion" type="text" placeholder="Calle, número, colonia, ciudad">
 
-</div>
+        </div>
 
-<label>Producto, promoción o tema principal *</label>
-<input id="tema">
+        <label>Producto, promoción o tema principal <span>*</span></label>
+        <input id="tema" type="text" placeholder="Ej. Promo Keratina Brasileña, Curso de Rizos, Kit Vereplex">
 
-<label>Texto que debe llevar el diseño</label>
-<textarea id="texto"></textarea>
+        <label>Texto que debe llevar el diseño</label>
+        <textarea id="texto" placeholder="Escribe aquí la información que debe aparecer en el material."></textarea>
 
-<label>Notas adicionales</label>
-<textarea id="notas"></textarea>
+        <label>Notas adicionales</label>
+        <textarea id="notas" placeholder="Colores, estilo, referencias, restricciones, comentarios, etc."></textarea>
 
-<button onclick="enviarWhatsapp()">
-Enviar solicitud por WhatsApp
-</button>
+        <button onclick="enviarWhatsapp()">Enviar solicitud por WhatsApp</button>
 
-</div>
+    </div>
 
 </div>
 
 <script src="script.js"></script>
 
 </body>
+</html>
+```
