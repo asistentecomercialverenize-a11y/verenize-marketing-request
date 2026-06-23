@@ -1,74 +1,63 @@
+```javascript
 const whatsapp = "526623641909";
 
 function mostrarCamposEvento(){
-
     const tipo = document.getElementById("tipo").value;
+    const camposEvento = document.getElementById("camposEvento");
 
-    if(
-        tipo === "Flyer de evento" ||
-        tipo === "Invitación / convocatoria"
-    ){
-        document.getElementById("camposEvento")
-        .classList.remove("hidden");
-    }
-    else{
-        document.getElementById("camposEvento")
-        .classList.add("hidden");
+    if(tipo === "Flyer de evento" || tipo === "Invitación / convocatoria"){
+        camposEvento.classList.remove("hidden");
+    }else{
+        camposEvento.classList.add("hidden");
     }
 }
 
 function enviarWhatsapp(){
+    const socio = document.getElementById("socio").value.trim();
+    const ciudad = document.getElementById("ciudad").value.trim();
+    const celular = document.getElementById("celular").value.trim();
+    const tipo = document.getElementById("tipo").value;
+    const tema = document.getElementById("tema").value.trim();
 
-    let mensaje = "";
+    const evento = document.getElementById("evento").value.trim();
+    const tecnico = document.getElementById("tecnico").value.trim();
+    const fechaEvento = document.getElementById("fechaEvento").value;
+    const horaEvento = document.getElementById("horaEvento").value;
+    const direccion = document.getElementById("direccion").value.trim();
 
-    mensaje += "SOLICITUD DE MATERIAL GRAFICO%0A%0A";
+    const texto = document.getElementById("texto").value.trim();
+    const notas = document.getElementById("notas").value.trim();
 
-    mensaje += "Socio Comercial: "
-        + document.getElementById("socio").value + "%0A";
-
-    mensaje += "Ciudad: "
-        + document.getElementById("ciudad").value + "%0A";
-
-    mensaje += "Celular: "
-        + document.getElementById("celular").value + "%0A";
-
-    mensaje += "Tipo de material: "
-        + document.getElementById("tipo").value + "%0A";
-
-    if(
-        document.getElementById("tipo").value === "Flyer de evento" ||
-        document.getElementById("tipo").value === "Invitación / convocatoria"
-    ){
-
-        mensaje += "%0A--- DATOS DEL EVENTO ---%0A";
-
-        mensaje += "Evento: "
-            + document.getElementById("evento").value + "%0A";
-
-        mensaje += "Tecnico: "
-            + document.getElementById("tecnico").value + "%0A";
-
-        mensaje += "Fecha: "
-            + document.getElementById("fechaEvento").value + "%0A";
-
-        mensaje += "Hora: "
-            + document.getElementById("horaEvento").value + "%0A";
-
-        mensaje += "Direccion: "
-            + document.getElementById("direccion").value + "%0A";
+    if(!socio || !ciudad || !celular || !tipo || !tema){
+        alert("Por favor completa todos los campos obligatorios marcados con *.");
+        return;
     }
 
-    mensaje += "%0AProducto / Promocion:%0A";
-    mensaje += document.getElementById("tema").value + "%0A%0A";
+    if((tipo === "Flyer de evento" || tipo === "Invitación / convocatoria") &&
+       (!evento || !tecnico || !fechaEvento || !horaEvento || !direccion)){
+        alert("Para flyer de evento completa nombre del evento, técnico, fecha, hora y dirección.");
+        return;
+    }
 
-    mensaje += "Texto:%0A";
-    mensaje += document.getElementById("texto").value + "%0A%0A";
+    let mensaje = "Hola, quiero solicitar un material gráfico:%0A%0A";
+    mensaje += `Socio comercial: ${socio}%0A`;
+    mensaje += `Ciudad: ${ciudad}%0A`;
+    mensaje += `Celular para publicidad: ${celular}%0A`;
+    mensaje += `Tipo de material: ${tipo}%0A`;
+    mensaje += `Producto / promoción / tema principal: ${tema}%0A%0A`;
 
-    mensaje += "Notas:%0A";
-    mensaje += document.getElementById("notas").value;
+    if(tipo === "Flyer de evento" || tipo === "Invitación / convocatoria"){
+        mensaje += "Datos del evento:%0A";
+        mensaje += `Nombre del evento: ${evento}%0A`;
+        mensaje += `Técnico: ${tecnico}%0A`;
+        mensaje += `Fecha: ${fechaEvento}%0A`;
+        mensaje += `Hora: ${horaEvento}%0A`;
+        mensaje += `Dirección completa: ${direccion}%0A%0A`;
+    }
 
-    window.open(
-        `https://wa.me/${whatsapp}?text=${mensaje}`,
-        "_blank"
-    );
+    mensaje += `Texto que debe llevar el diseño:%0A${texto || "Sin texto específico"}%0A%0A`;
+    mensaje += `Notas adicionales:%0A${notas || "Sin notas adicionales"}`;
+
+    window.open(`https://wa.me/${whatsapp}?text=${mensaje}`, "_blank");
 }
+```
