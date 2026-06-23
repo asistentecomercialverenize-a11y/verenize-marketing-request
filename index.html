@@ -1,284 +1,75 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solicitud de materiales gráficos</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-*{box-sizing:border-box;font-family:'Montserrat',sans-serif;}
-
-body{
-    margin:0;
-    background:#f7f2fb;
-    color:#2d1248;
-}
-
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:35px 20px;
-}
-
-.header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:30px;
-    margin-bottom:45px;
-}
-
-h1{
-    font-size:54px;
-    line-height:1.05;
-    margin:0 0 20px;
-    font-weight:800;
-}
-
-.subtitle{
-    font-size:21px;
-    color:#6d6474;
-    line-height:1.5;
-    max-width:750px;
-}
-
-.logo{
-    width:190px;
-    max-width:100%;
-}
-
-.form-card{
-    background:white;
-    padding:40px;
-    border-radius:24px;
-    box-shadow:0 15px 35px rgba(45,18,72,.08);
-}
-
-label{
-    display:block;
-    font-size:18px;
-    font-weight:700;
-    margin-top:18px;
-    margin-bottom:8px;
-}
-
-.required{
-    color:#e63946;
-}
-
-input, select, textarea{
-    width:100%;
-    padding:16px;
-    border:1px solid #d8c7e8;
-    border-radius:14px;
-    font-size:17px;
-    outline:none;
-}
-
-textarea{
-    min-height:120px;
-    resize:vertical;
-}
-
-.row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
-}
-
-.hidden{
-    display:none;
-}
-
-button{
-    width:100%;
-    background:#2d1248;
-    color:white;
-    border:none;
-    padding:18px;
-    font-size:18px;
-    font-weight:700;
-    border-radius:16px;
-    margin-top:28px;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#431c68;
-}
-
-.note{
-    font-size:14px;
-    color:#6d6474;
-    margin-top:12px;
-}
-
-@media(max-width:800px){
-    .header{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    h1{
-        font-size:38px;
-    }
-
-    .row{
-        grid-template-columns:1fr;
-    }
-
-    .form-card{
-        padding:25px;
-    }
-}
-</style>
-</head>
-
 <body>
 
 <div class="container">
 
-    <div class="header">
-        <div>
-            <h1>Solicitud de materiales gráficos</h1>
-            <div class="subtitle">
-                Completa la información necesaria para solicitar materiales publicitarios, promocionales o de comunicación.
-            </div>
+<div class="header">
+    <div>
+        <h1>Solicitud de materiales gráficos</h1>
+        <div class="subtitle">
+            Completa la información necesaria para solicitar materiales publicitarios.
         </div>
-
-        <img class="logo" src="LOGO+SLOGAN(NEGRO) (5).png" alt="Verenize">
     </div>
 
-    <div class="form-card">
+    <img class="logo" src="LOGO+SLOGAN(NEGRO) (5).png">
+</div>
 
-        <label>Nombre del socio comercial <span class="required">*</span></label>
-        <input id="socio comercial" required>
+<div class="form-card">
 
-        <label>Ciudad <span class="required">*</span></label>
-        <input id="ciudad" placeholder="Ej. Hermosillo, Sonora" required>
+<label>Nombre del socio comercial *</label>
+<input id="socio">
 
-        <label>Celular que aparecerá en la publicidad <span class="required">*</span></label>
-        <input id="celular" placeholder="Ej. 6621234567" required>
+<label>Ciudad *</label>
+<input id="ciudad">
 
-        <label>Tipo de material <span class="required">*</span></label>
-        <select id="tipo" onchange="mostrarCamposEvento()" required>
-            <option value="">Selecciona una opción</option>
-            <option value="Flyer promocional">Flyer promocional</option>
-            <option value="Historia para redes">Historia para redes</option>
-            <option value="Post para redes">Post para redes</option>
-            <option value="Flyer de evento">Flyer de evento</option>
-            <option value="Invitación / convocatoria">Invitación / convocatoria</option>
-            <option value="Otro">Otro</option>
-        </select>
+<label>Celular que aparecerá en la publicidad *</label>
+<input id="celular">
 
-        <div id="camposEvento" class="hidden">
-            <div class="row">
-                <div>
-                    <label>Nombre del evento</label>
-                    <input id="evento" placeholder="Ej. Certificación de Rizos">
-                </div>
+<label>Tipo de material *</label>
+<select id="tipo" onchange="mostrarCamposEvento()">
+    <option value="">Selecciona una opción</option>
+    <option value="Flyer promocional">Flyer promocional</option>
+    <option value="Historia para redes">Historia para redes</option>
+    <option value="Post para redes">Post para redes</option>
+    <option value="Flyer de evento">Flyer de evento</option>
+    <option value="Invitación / convocatoria">Invitación / convocatoria</option>
+</select>
 
-                <div>
-                    <label>Nombre del técnico</label>
-                    <input id="tecnico" placeholder="Ej. Claudia Mondaca">
-                </div>
-            </div>
+<div id="camposEvento" class="hidden">
 
-            <div class="row">
-                <div>
-                    <label>Fecha del evento</label>
-                    <input id="fechaEvento" type="date">
-                </div>
+<label>Nombre del evento *</label>
+<input id="evento">
 
-                <div>
-                    <label>Hora del evento</label>
-                    <input id="horaEvento" type="time">
-                </div>
-            </div>
+<label>Nombre del técnico *</label>
+<input id="tecnico">
 
-            <label>Dirección completa del evento</label>
-            <input id="direccion" placeholder="Calle, número, colonia, ciudad">
-        </div>
+<label>Fecha del evento *</label>
+<input id="fechaEvento" type="date">
 
-        <label>Producto, promoción o tema principal <span class="required">*</span></label>
-        <input id="tema" placeholder="Ej. Promo Keratina Brasileña, Curso de Rizos, Kit Vereplex" required>
+<label>Hora del evento *</label>
+<input id="horaEvento" type="time">
 
-        <label>Texto que debe llevar el diseño</label>
-        <textarea id="texto" placeholder="Escribe aquí la información que debe aparecer en el material."></textarea>
-
-        <label>Notas adicionales</label>
-        <textarea id="notas" placeholder="Colores, estilo, referencias, restricciones, comentarios, etc."></textarea>
-
-        <button onclick="enviarWhatsapp()">Enviar solicitud por WhatsApp</button>
-
-        <div class="note">
-            Antes de enviar, revisa que los datos estén completos y escritos correctamente.
-        </div>
-
-    </div>
+<label>Dirección completa *</label>
+<input id="direccion">
 
 </div>
 
-<script>
-const whatsapp = "526623641909";
+<label>Producto, promoción o tema principal *</label>
+<input id="tema">
 
-function mostrarCamposEvento(){
-    const tipo = document.getElementById("tipo").value;
-    const camposEvento = document.getElementById("camposEvento");
+<label>Texto que debe llevar el diseño</label>
+<textarea id="texto"></textarea>
 
-    if(tipo === "Flyer de evento" || tipo === "Invitación / convocatoria"){
-        camposEvento.classList.remove("hidden");
-    }else{
-        camposEvento.classList.add("hidden");
-    }
-}
+<label>Notas adicionales</label>
+<textarea id="notas"></textarea>
 
-function enviarWhatsapp(){
-    const socio comercial = document.getElementById("socio comercial").value.trim();
-    const ciudad = document.getElementById("ciudad").value.trim();
-    const celular = document.getElementById("celular").value.trim();
-    const tipo = document.getElementById("tipo").value;
-    const tema = document.getElementById("tema").value.trim();
+<button onclick="enviarWhatsapp()">
+Enviar solicitud por WhatsApp
+</button>
 
-    if(!socio comercial || !ciudad || !celular || !tipo || !tema){
-        alert("Por favor completa todos los campos obligatorios marcados con *.");
-        return;
-    }
+</div>
 
-    const evento = document.getElementById("evento").value.trim();
-    const tecnico = document.getElementById("tecnico").value.trim();
-    const fechaEvento = document.getElementById("fechaEvento").value;
-    const horaEvento = document.getElementById("horaEvento").value;
-    const direccion = document.getElementById("direccion").value.trim();
-    const texto = document.getElementById("texto").value.trim();
-    const notas = document.getElementById("notas").value.trim();
+</div>
 
-    let mensaje = "Hola, quiero solicitar un material gráfico:%0A%0A";
-    mensaje += `socio comercial: ${socio comercial}%0A`;
-    mensaje += `Ciudad: ${ciudad}%0A`;
-    mensaje += `Celular para publicidad: ${celular}%0A`;
-    mensaje += `Tipo de material: ${tipo}%0A`;
-    mensaje += `Tema / producto principal: ${tema}%0A%0A`;
-
-    if(tipo === "Flyer de evento" || tipo === "Invitación / convocatoria"){
-        mensaje += `Datos del evento:%0A`;
-        mensaje += `Nombre del evento: ${evento}%0A`;
-        mensaje += `Técnico: ${tecnico}%0A`;
-        mensaje += `Fecha: ${fechaEvento}%0A`;
-        mensaje += `Hora: ${horaEvento}%0A`;
-        mensaje += `Dirección completa: ${direccion}%0A%0A`;
-    }
-
-    mensaje += `Texto para el diseño:%0A${texto || "Sin texto específico"}%0A%0A`;
-    mensaje += `Notas adicionales:%0A${notas || "Sin notas adicionales"}`;
-
-    window.open(`https://wa.me/${whatsapp}?text=${mensaje}`, "_blank");
-}
-</script>
+<script src="script.js"></script>
 
 </body>
-</html>
