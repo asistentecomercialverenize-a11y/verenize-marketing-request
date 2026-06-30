@@ -1,5 +1,5 @@
 ```javascript
-const whatsapp = "526623641909";
+const whatsapp = "526624212850";
 
 function mostrarCamposEvento(){
     const tipo = document.getElementById("tipo").value;
