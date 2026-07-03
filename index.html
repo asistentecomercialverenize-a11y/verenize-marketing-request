@@ -17,8 +17,8 @@
 
 body{
     margin:0;
-    background:#f7f2fb;
-    color:#2d1248;
+    background:#F8F7F5;
+    color:#333132;
 }
 
 .container{
@@ -40,11 +40,12 @@ h1{
     line-height:1.05;
     margin:0 0 20px;
     font-weight:800;
+    color:#333132;
 }
 
 .subtitle{
     font-size:21px;
-    color:#6d6474;
+    color:#707070;
     line-height:1.5;
     max-width:750px;
 }
@@ -60,7 +61,7 @@ h1{
     background:white;
     padding:40px;
     border-radius:24px;
-    box-shadow:0 15px 35px rgba(45,18,72,.08);
+    box-shadow:0 15px 35px rgba(51,49,50,.08);
 }
 
 label{
@@ -69,19 +70,29 @@ label{
     font-weight:700;
     margin-top:18px;
     margin-bottom:8px;
+    color:#333132;
 }
 
 .required{
-    color:#e63946;
+    color:#CC9F53;
 }
 
 input, select, textarea{
     width:100%;
     padding:15px;
-    border:1px solid #d8c7e8;
+    border:1px solid #C0C0C0;
     border-radius:12px;
     font-size:16px;
     outline:none;
+    color:#333132;
+    background:white;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#CC9F53;
+    box-shadow:0 0 0 4px rgba(204,159,83,.18);
 }
 
 textarea{
@@ -96,29 +107,30 @@ textarea{
 .info-box{
     margin-top:12px;
     padding:13px;
-    background:#fbf8ff;
-    border:1px solid #e2d3ef;
+    background:#FAF8F6;
+    border:1px solid #CDA787;
     border-radius:12px;
     font-size:14px;
     line-height:1.5;
-    color:#5d4b68;
+    color:#333132;
 }
 
 .event-box{
     margin-top:18px;
     padding:18px;
-    background:#fbf8ff;
-    border:1px solid #e2d3ef;
+    background:#FAF8F6;
+    border:1px solid #CDA787;
     border-radius:16px;
 }
 
 .event-box h3{
     margin-top:0;
+    color:#333132;
 }
 
 button{
     width:100%;
-    background:#2d1248;
+    background:#CC9F53;
     color:white;
     border:none;
     padding:18px;
@@ -130,17 +142,19 @@ button{
 }
 
 button:hover{
-    background:#431c68;
+    background:#CDA787;
 }
 
 .note{
     font-size:14px;
-    color:#6d6474;
+    color:#707070;
     margin-top:12px;
 }
 
 @media (max-width: 768px){
-    .container{padding:15px;}
+    .container{
+        padding:15px;
+    }
 
     .header{
         flex-direction:column;
@@ -148,10 +162,21 @@ button:hover{
         gap:20px;
     }
 
-    h1{font-size:32px;}
-    .subtitle{font-size:16px;}
-    .logo{width:180px;}
-    .form-card{padding:20px;}
+    h1{
+        font-size:32px;
+    }
+
+    .subtitle{
+        font-size:16px;
+    }
+
+    .logo{
+        width:180px;
+    }
+
+    .form-card{
+        padding:20px;
+    }
 
     button{
         font-size:16px;
@@ -177,12 +202,14 @@ button:hover{
     </div>
 
     <div class="form-card">
-<label>¿Para qué fecha necesitas el material? <span class="required">*</span></label>
-<input id="fechaNecesaria" type="date">
 
-<div class="info-box">
-    Esta fecha corresponde al día en que necesitas tener el material listo para su entrega o publicación. Te recomendamos solicitarlo con la mayor anticipación posible para garantizar su desarrollo.
-</div>
+        <label>¿Para qué fecha necesitas el material? <span class="required">*</span></label>
+        <input id="fechaNecesaria" type="date">
+
+        <div class="info-box">
+            Esta fecha corresponde al día en que necesitas tener el material listo para su entrega o publicación. Te recomendamos solicitarlo con la mayor anticipación posible para garantizar su desarrollo.
+        </div>
+
         <label>Nombre del socio comercial <span class="required">*</span></label>
         <input id="socio" type="text">
 
@@ -220,7 +247,7 @@ button:hover{
             <input id="medidas" type="text" placeholder="Ej. Carta, tabloide, 60x90 cm, 1x2 metros, etc.">
 
             <label>Tipo de hoja o material <span class="required">*</span></label>
-            <input id="tipoMaterial" type="text" placeholder="Ej. Lona,papel opalina, couche, adhesivo, PVC, etc.">
+            <input id="tipoMaterial" type="text" placeholder="Ej. Lona, papel opalina, couche, adhesivo, PVC, etc.">
         </div>
 
         <label>Objetivo del material <span class="required">*</span></label>
@@ -324,6 +351,7 @@ function mostrarCampos(){
 }
 
 function enviarWhatsapp(){
+    const fechaNecesaria = document.getElementById("fechaNecesaria").value;
     const socio = document.getElementById("socio").value.trim();
     const ciudad = document.getElementById("ciudad").value.trim();
     const celular = document.getElementById("celular").value.trim();
@@ -340,7 +368,7 @@ function enviarWhatsapp(){
     const horaEvento = document.getElementById("horaEvento").value;
     const direccion = document.getElementById("direccion").value.trim();
 
-    if(!socio || !ciudad || !tipo || !formato || !objetivo){
+    if(!fechaNecesaria || !socio || !ciudad || !tipo || !formato || !objetivo){
         alert("Por favor completa todos los campos obligatorios marcados con *.");
         return;
     }
@@ -357,6 +385,7 @@ function enviarWhatsapp(){
     }
 
     let mensaje = "Hola, quiero solicitar un material gráfico:%0A%0A";
+    mensaje += `Fecha requerida: ${fechaNecesaria}%0A`;
     mensaje += `Socio comercial: ${socio}%0A`;
     mensaje += `Ciudad: ${ciudad}%0A`;
     mensaje += `Celular para publicidad: ${celular || "No aplica / no desea mostrar celular"}%0A`;
