@@ -100,7 +100,7 @@ function enviarWhatsapp(){
     const socio = document.getElementById("socio").value.trim();
     const ciudad = document.getElementById("ciudad").value.trim();
     const celular = document.getElementById("celular").value.trim();
-
+    const fechaNecesaria = document.getElementById("fechaNecesaria").value;
     const tipo = document.getElementById("tipo").value;
     const formato = document.getElementById("formato").value;
 
@@ -118,9 +118,9 @@ function enviarWhatsapp(){
 
     // Validaciones generales
 
-    if(!socio || !ciudad || !tipo || !formato || !objetivo){
-        alert("Por favor completa todos los campos obligatorios.");
-        return;
+    if(!fechaNecesaria || !socio || !ciudad || !tipo || !formato || !objetivo){
+    alert("Por favor completa todos los campos obligatorios.");
+    return;
     }
 
     // Validación impresión
@@ -160,13 +160,11 @@ function enviarWhatsapp(){
 
     // Construcción del mensaje
 
-    let mensaje = "Hola, quiero solicitar un material gráfico:%0A%0A";
+let mensaje = "Hola, quiero solicitar un material gráfico:%0A%0A";
 
-    mensaje += `Socio comercial: ${socio}%0A`;
-    mensaje += `Ciudad: ${ciudad}%0A`;
-    mensaje += `Celular para publicidad: ${celular || "No aplica"}%0A`;
-    mensaje += `Tipo de material: ${tipo}%0A`;
-    mensaje += `Formato: ${formato}%0A`;
+mensaje += `Fecha requerida: ${fechaNecesaria}%0A`;
+mensaje += `Socio comercial: ${socio}%0A`;
+mensaje += `Ciudad: ${ciudad}%0A`;
 
     if(
         formato === "Impreso" ||
