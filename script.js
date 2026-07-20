@@ -10,16 +10,26 @@ function mostrarCampos(){
     const descripcionTipo = document.getElementById("descripcionTipo");
     const descripcionFormato = document.getElementById("descripcionFormato");
 
-    // Mostrar datos del evento
-    if(
-        tipo === "Flyer de evento" ||
-        tipo === "Invitación / convocatoria" ||
-        tipo === "Pendón publicitario" ||
-        tipo === "Otro"
-    ){
+    // Mostrar campos del evento
+    if(tipo === "Flyer de evento"){
         camposEvento.classList.remove("hidden");
+
+        document.getElementById("tecnico").parentElement.style.display = "";
+        document.getElementById("fechaEvento").parentElement.parentElement.style.display = "";
+        document.getElementById("direccion").parentElement.style.display = "";
+
+    }else if(tipo === "Pendón publicitario"){
+
+        camposEvento.classList.remove("hidden");
+
+        document.getElementById("tecnico").parentElement.style.display = "none";
+        document.getElementById("fechaEvento").parentElement.parentElement.style.display = "none";
+        document.getElementById("direccion").parentElement.style.display = "none";
+
     }else{
+
         camposEvento.classList.add("hidden");
+
     }
 
     // Mostrar medidas
@@ -33,34 +43,36 @@ function mostrarCampos(){
         camposMedidas.classList.add("hidden");
     }
 
-    // Descripción del tipo
-    let textoTipo = "";
+    // Descripción tipo
+
+    let textoTipo="";
 
     switch(tipo){
 
-            case "Historia para redes":
-            textoTipo = "Diseño vertical pensado para historias de Instagram, Facebook o WhatsApp.";
-            break;
+        case "Historia para redes":
+            textoTipo="Diseño vertical para historias de redes sociales.";
+        break;
 
         case "Post para redes":
-            textoTipo = "Diseño para publicaciones permanentes en redes sociales.";
-            break;
+            textoTipo="Diseño para publicaciones permanentes.";
+        break;
 
         case "Flyer de evento":
-            textoTipo = "Material para promocionar cursos, certificaciones, demostraciones o eventos.";
-            break;
+            textoTipo="Material para promocionar cursos, certificaciones o eventos.";
+        break;
 
         case "Invitación / convocatoria":
-            textoTipo = "Material para invitar a socios comerciales, técnicos o clientes.";
-            break;
+            textoTipo="Material para invitar asistentes a un evento.";
+        break;
 
         case "Pendón publicitario":
-            textoTipo = "Material impreso de gran formato. Es necesario indicar medidas y tipo de material.";
-            break;
+            textoTipo="Pendón impreso. Solo indica el nombre del evento y las medidas.";
+        break;
 
         case "Otro":
-            textoTipo = "Describe el material que necesitas. Se habilitarán todos los campos para que Marketing pueda evaluar la mejor opción.";
-            break;
+            textoTipo="Especifica el material requerido.";
+        break;
+
     }
 
     if(textoTipo){
@@ -70,20 +82,20 @@ function mostrarCampos(){
         descripcionTipo.classList.add("hidden");
     }
 
-    // Descripción del formato
+    // Descripción formato
 
-    let textoFormato = "";
+    let textoFormato="";
 
-    if(formato === "Digital"){
-        textoFormato = "Selecciona esta opción si el material será utilizado únicamente en medios digitales como redes sociales, WhatsApp o correo electrónico.";
+    if(formato==="Digital"){
+        textoFormato="Material para uso digital.";
     }
 
-    if(formato === "Impreso"){
-        textoFormato = "Selecciona esta opción cuando el material vaya a imprimirse. Es obligatorio indicar medidas y tipo de material.";
+    if(formato==="Impreso"){
+        textoFormato="Material para impresión.";
     }
 
     if(textoFormato){
-        descripcionFormato.innerHTML = textoFormato;
+        descripcionFormato.innerHTML=textoFormato;
         descripcionFormato.classList.remove("hidden");
     }else{
         descripcionFormato.classList.add("hidden");
@@ -112,85 +124,74 @@ function enviarWhatsapp(){
     const horaEvento = document.getElementById("horaEvento").value;
     const direccion = document.getElementById("direccion").value.trim();
 
-    // Validaciones generales
+    let mensaje = "Hola, quiero solicitar un material gráfico:%0A%0A";
 
-    if(!fechaNecesaria || !socio || !ciudad || !tipo || !formato || !objetivo){
-    alert("Por favor completa todos los campos obligatorios.");
-    return;
-    }
+    if(fechaNecesaria)
+        mensaje += `Fecha requerida: ${fechaNecesaria}%0A`;
 
-    // Validación impresión
+    if(socio)
+        mensaje += `Socio comercial: ${socio}%0A`;
 
-    if(
-        (formato === "Impreso" ||
-        tipo === "Pendón publicitario" ||
-        tipo === "Otro")
-        &&
-        (!medidas || !tipoMaterial)
-    ){
-        alert("Debes indicar las medidas y el tipo de material.");
-        return;
-    }
+    if(ciudad)
+        mensaje += `Ciudad: ${ciudad}%0A`;
 
-    // Validación evento
+    if(celular)
+        mensaje += `Celular: ${celular}%0A`;
+
+    if(tipo)
+        mensaje += `Tipo de material: ${tipo}%0A`;
+
+    if(formato)
+        mensaje += `Formato: ${formato}%0A`;
 
     if(
-        (
-        tipo === "Flyer de evento" ||
-        tipo === "Invitación / convocatoria" ||
-        tipo === "Pendón publicitario" ||
-        tipo === "Otro"
-        )
-        &&
-        (
-        !evento ||
-        !tecnico ||
-        !fechaEvento ||
-        !horaEvento ||
-        !direccion
-        )
+        (formato==="Impreso" || tipo==="Pendón publicitario" || tipo==="Otro")
+        && (medidas || tipoMaterial)
     ){
-        alert("Completa todos los datos del evento.");
-        return;
+        mensaje += `%0A`;
+        if(medidas)
+            mensaje += `Medidas: ${medidas}%0A`;
+        if(tipoMaterial)
+            mensaje += `Tipo de material para impresión: ${tipoMaterial}%0A`;
     }
 
-    // Construcción del mensaje
-
-let mensaje = "Hola, quiero solicitar un material gráfico:%0A%0A";
-
-mensaje += `Fecha requerida: ${fechaNecesaria}%0A`;
-mensaje += `Socio comercial: ${socio}%0A`;
-mensaje += `Ciudad: ${ciudad}%0A`;
-
-    if(
-        formato === "Impreso" ||
-        tipo === "Pendón publicitario" ||
-        tipo === "Otro"
-    ){
-        mensaje += `Medidas: ${medidas}%0A`;
-        mensaje += `Tipo de material: ${tipoMaterial}%0A`;
+    if(objetivo){
+        mensaje += `%0AObjetivo del material:%0A${objetivo}%0A`;
     }
 
-    mensaje += `%0AObjetivo del material:%0A${objetivo}%0A%0A`;
+    if(tipo==="Flyer de evento"){
 
-    if(
-        tipo === "Flyer de evento" ||
-        tipo === "Invitación / convocatoria" ||
-        tipo === "Pendón publicitario" ||
-        tipo === "Otro"
-    ){
+        mensaje += `%0A=== DATOS DEL EVENTO ===%0A`;
 
-        mensaje += "DATOS DEL EVENTO:%0A";
+        if(evento)
+            mensaje += `Nombre del evento: ${evento}%0A`;
 
-        mensaje += `Nombre del evento: ${evento}%0A`;
-        mensaje += `Técnico: ${tecnico}%0A`;
-        mensaje += `Fecha: ${fechaEvento}%0A`;
-        mensaje += `Hora: ${horaEvento}%0A`;
-        mensaje += `Dirección: ${direccion}%0A%0A`;
+        if(tecnico)
+            mensaje += `Técnico: ${tecnico}%0A`;
+
+        if(fechaEvento)
+            mensaje += `Fecha: ${fechaEvento}%0A`;
+
+        if(horaEvento)
+            mensaje += `Hora: ${horaEvento}%0A`;
+
+        if(direccion)
+            mensaje += `Dirección: ${direccion}%0A`;
 
     }
 
-    mensaje += `Especificaciones adicionales:%0A${notas || "Sin especificaciones"}%0A`;
+    if(tipo==="Pendón publicitario"){
+
+        mensaje += `%0A=== EVENTO ===%0A`;
+
+        if(evento)
+            mensaje += `Nombre del evento: ${evento}%0A`;
+
+    }
+
+    if(notas){
+        mensaje += `%0AComentarios adicionales:%0A${notas}`;
+    }
 
     window.open(
         `https://wa.me/${whatsapp}?text=${mensaje}`,
