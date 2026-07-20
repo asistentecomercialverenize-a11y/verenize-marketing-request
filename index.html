@@ -222,7 +222,6 @@ button:hover{
         <label>Tipo de material <span class="required">*</span></label>
         <select id="tipo" onchange="mostrarCampos()">
             <option value="">Selecciona una opción</option>
-            <option value="Flyer promocional">Flyer promocional</option>
             <option value="Historia para redes">Historia para redes</option>
             <option value="Post para redes">Post para redes</option>
             <option value="Flyer de evento">Flyer de evento</option>
@@ -233,7 +232,7 @@ button:hover{
 
         <div id="descripcionTipo" class="info-box hidden"></div>
 
-        <label>Formato del material <span class="required">*</span></label>
+        <label>Formato del material <span class>*</span></label>
         <select id="formato" onchange="mostrarCampos()">
             <option value="">Selecciona una opción</option>
             <option value="Digital">Digital</option>
@@ -243,14 +242,14 @@ button:hover{
         <div id="descripcionFormato" class="info-box hidden"></div>
 
         <div id="camposMedidas" class="hidden">
-            <label>Medidas del material <span class="required">*</span></label>
+            <label>Medidas del material <span class>*</span></label>
             <input id="medidas" type="text" placeholder="Ej. Carta, tabloide, 60x90 cm, 1x2 metros, etc.">
 
-            <label>Tipo de hoja o material <span class="required">*</span></label>
+            <label>Tipo de hoja o material <span class>*</span></label>
             <input id="tipoMaterial" type="text" placeholder="Ej. Lona, papel opalina, couche, adhesivo, PVC, etc.">
         </div>
 
-        <label>Objetivo del material <span class="required">*</span></label>
+        <label>Objetivo del material <span class>*</span></label>
         <textarea id="objetivo" placeholder="Describe brevemente cómo será usado el material. Ej. Se imprimirá para evento, se publicará en historias, se usará como lona para evento, etc."></textarea>
 
         <div id="camposEvento" class="hidden event-box">
@@ -286,7 +285,7 @@ button:hover{
 </div>
 
 <script>
-const whatsapp = "526623641909";
+const whatsapp = "526624212850";
 
 function mostrarCampos(){
     const tipo = document.getElementById("tipo").value;
