@@ -108,7 +108,6 @@ function enviarWhatsapp(){
     const socio = document.getElementById("socio").value.trim();
     const ciudad = document.getElementById("ciudad").value.trim();
     const celular = document.getElementById("celular").value.trim();
-    const fechaNecesaria = document.getElementById("fechaNecesaria").value;
     const tipo = document.getElementById("tipo").value;
     const formato = document.getElementById("formato").value;
 
@@ -125,9 +124,6 @@ function enviarWhatsapp(){
     const direccion = document.getElementById("direccion").value.trim();
 
     let mensaje = "Hola, quiero solicitar un material gráfico:%0A%0A";
-
-    if(fechaNecesaria)
-        mensaje += `Fecha requerida: ${fechaNecesaria}%0A`;
 
     if(socio)
         mensaje += `Socio comercial: ${socio}%0A`;
