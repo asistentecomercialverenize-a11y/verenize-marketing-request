@@ -252,24 +252,30 @@ button:hover{
         <label>Objetivo del material <span class>*</span></label>
         <textarea id="objetivo" placeholder="Describe brevemente cómo será usado el material. Ej. Se imprimirá para evento, se publicará en historias, se usará como lona para evento, etc."></textarea>
 
-        <div id="camposEvento" class="hidden event-box">
-            <h3>Datos del evento</h3>
+<div id="camposEvento" class="hidden event-box">
 
-            <label>Nombre del evento <span class="required">*</span></label>
-            <input id="evento" type="text" placeholder="Ej. Amamos los rizos">
+    <h3>Datos del evento</h3>
 
-            <label>Nombre del técnico <span class="required">*</span></label>
-            <input id="tecnico" type="text" placeholder="Ej. Técnico profesional Ana Pérez">
+    <label>Nombre del evento</label>
+    <input id="evento" type="text" placeholder="Ej. Amamos los rizos">
 
-            <label>Fecha del evento <span class="required">*</span></label>
-            <input id="fechaEvento" type="date">
+    <div id="datosEvento">
 
-            <label>Hora del evento <span class="required">*</span></label>
-            <input id="horaEvento" type="time">
+        <label>Nombre del técnico</label>
+        <input id="tecnico" type="text" placeholder="Ej. Técnico profesional Ana Pérez">
 
-            <label>Dirección completa <span class="required">*</span></label>
-            <input id="direccion" type="text" placeholder="Calle, número, colonia, ciudad">
-        </div>
+        <label>Fecha del evento</label>
+        <input id="fechaEvento" type="date">
+
+        <label>Hora del evento</label>
+        <input id="horaEvento" type="time">
+
+        <label>Dirección completa</label>
+        <input id="direccion" type="text" placeholder="Calle, número, colonia, ciudad">
+
+    </div>
+
+</div>
 
         <label>Especificaciones adicionales del diseño</label>
         <textarea id="notas" placeholder="Colores, estilo, referencias, restricciones, comentarios, etc."></textarea>
@@ -292,15 +298,26 @@ function mostrarCampos(){
     const formato = document.getElementById("formato").value;
 
     const camposEvento = document.getElementById("camposEvento");
+    const datosEvento = document.getElementById("datosEvento");
     const camposMedidas = document.getElementById("camposMedidas");
     const descripcionTipo = document.getElementById("descripcionTipo");
     const descripcionFormato = document.getElementById("descripcionFormato");
 
-    if(tipo === "Flyer de evento" || tipo === "Invitación / convocatoria" || tipo === "Pendón publicitario" || tipo === "Otro"){
-        camposEvento.classList.remove("hidden");
-    }else{
-        camposEvento.classList.add("hidden");
-    }
+if(tipo === "Flyer de evento" || tipo === "Invitación / convocatoria"){
+
+    camposEvento.classList.remove("hidden");
+    datosEvento.classList.remove("hidden");
+
+}else if(tipo === "Pendón publicitario"){
+
+    camposEvento.classList.remove("hidden");
+    datosEvento.classList.add("hidden");
+
+}else{
+
+    camposEvento.classList.add("hidden");
+
+}
 
     if(formato === "Impreso" || tipo === "Pendón publicitario" || tipo === "Otro"){
         camposMedidas.classList.remove("hidden");
