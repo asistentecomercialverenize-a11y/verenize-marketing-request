@@ -1,4 +1,4 @@
-const whatsapp = "526623641909";
+const whatsapp = "526624212850";
 
 function mostrarCampos(){
 
@@ -38,11 +38,7 @@ function mostrarCampos(){
 
     switch(tipo){
 
-        case "Flyer promocional":
-            textoTipo = "Ideal para promociones, lanzamientos, descuentos o campañas comerciales.";
-            break;
-
-        case "Historia para redes":
+            case "Historia para redes":
             textoTipo = "Diseño vertical pensado para historias de Instagram, Facebook o WhatsApp.";
             break;
 
