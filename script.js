@@ -74,8 +74,10 @@ else{
         break;
 
         case "Pendón publicitario":
-            textoTipo="Pendón impreso. Solo indica el nombre del evento y las medidas.";
-        break;
+    textoTipo="Selecciona el tipo de evento o campaña e indica el texto que llevará el pendón. También especifica las medidas y el tipo de material para impresión.";
+break;case "Pendón publicitario":
+    textoTipo="Selecciona el tipo de evento o campaña e indica el texto que llevará el pendón. También especifica las medidas y el tipo de material para impresión.";
+break;
 
         case "Otro":
             textoTipo="Especifica el material requerido.";
@@ -130,7 +132,27 @@ function enviarWhatsapp(){
     const fechaEvento = document.getElementById("fechaEvento").value;
     const horaEvento = document.getElementById("horaEvento").value;
     const direccion = document.getElementById("direccion").value.trim();
+    const tipoPendon = document.getElementById("tipoPendon").value;
+    const textoPendon = document.getElementById("textoPendon").value.trim();
+    if(tipo==="Pendón publicitario"){
 
+    if(!tipoPendon){
+
+        alert("Selecciona el tipo de evento o campaña.");
+
+        return;
+
+    }
+
+    if(!textoPendon){
+
+        alert("Escribe el texto que llevará el pendón.");
+
+        return;
+
+    }
+
+}
     let mensaje = "Hola, quiero solicitar un material gráfico:%0A%0A";
 
     if(socio)
@@ -184,14 +206,15 @@ function enviarWhatsapp(){
 
     }
 
-    if(tipo==="Pendón publicitario"){
+if(tipo==="Pendón publicitario"){
 
-        mensaje += `%0A=== EVENTO ===%0A`;
+    mensaje += `%0A=== PENDÓN PUBLICITARIO ===%0A`;
 
-        if(evento)
-            mensaje += `Nombre del evento: ${evento}%0A`;
+    mensaje += `Tipo de evento/campaña: ${tipoPendon}%0A`;
 
-    }
+    mensaje += `Texto del pendón: ${textoPendon}%0A`;
+
+}
 
     if(notas){
         mensaje += `%0AComentarios adicionales:%0A${notas}`;
