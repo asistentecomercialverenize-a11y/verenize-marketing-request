@@ -4,32 +4,40 @@ function mostrarCampos(){
 
     const tipo = document.getElementById("tipo").value;
     const formato = document.getElementById("formato").value;
-
+    
+    const camposPendon = document.getElementById("camposPendon");  
     const camposEvento = document.getElementById("camposEvento");
     const camposMedidas = document.getElementById("camposMedidas");
     const descripcionTipo = document.getElementById("descripcionTipo");
     const descripcionFormato = document.getElementById("descripcionFormato");
 
     // Mostrar campos del evento
-    if(tipo === "Flyer de evento"){
-        camposEvento.classList.remove("hidden");
+    // Mostrar secciones según el tipo
 
-        document.getElementById("tecnico").parentElement.style.display = "";
-        document.getElementById("fechaEvento").parentElement.parentElement.style.display = "";
-        document.getElementById("direccion").parentElement.style.display = "";
+if(tipo === "Flyer de evento" || tipo === "Invitación / convocatoria"){
 
-    }else if(tipo === "Pendón publicitario"){
+    camposEvento.classList.remove("hidden");
+    camposPendon.classList.add("hidden");
 
-        camposEvento.classList.remove("hidden");
+}
+else if(tipo === "Pendón publicitario"){
 
-        document.getElementById("tecnico").parentElement.style.display = "none";
-        document.getElementById("fechaEvento").parentElement.parentElement.style.display = "none";
-        document.getElementById("direccion").parentElement.style.display = "none";
+    camposEvento.classList.add("hidden");
+    camposPendon.classList.remove("hidden");
 
-    }else{
+}
+else if(tipo === "Otro"){
 
-        camposEvento.classList.add("hidden");
+    camposEvento.classList.remove("hidden");
+    camposPendon.classList.remove("hidden");
 
+}
+else{
+
+    camposEvento.classList.add("hidden");
+    camposPendon.classList.add("hidden");
+
+}
     }
 
     // Mostrar medidas
