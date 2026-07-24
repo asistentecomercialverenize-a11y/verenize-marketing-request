@@ -253,7 +253,32 @@ button:hover{
         <textarea id="objetivo" placeholder="Describe brevemente cómo será usado el material. Ej. Se imprimirá para evento, se publicará en historias, se usará como lona para evento, etc."></textarea>
 
 <div id="camposEvento" class="hidden event-box">
+<div id="camposPendon" class="hidden event-box">
 
+    <h3>Información del pendón</h3>
+
+    <label>Tipo de evento o campaña <span class="required">*</span></label>
+
+    <select id="tipoPendon">
+
+        <option value="">Selecciona una opción</option>
+        <option value="Certificación">Certificación</option>
+        <option value="Master Class">Master Class</option>
+        <option value="Perfect Blonde">Perfect Blonde</option>
+        <option value="Beauty Brunch">Beauty Brunch</option>
+        <option value="Amamos los Rizos">Amamos los Rizos</option>
+        <option value="Otro">Otro</option>
+
+    </select>
+
+    <label>Texto que llevará el pendón <span class="required">*</span></label>
+
+    <textarea
+        id="textoPendon"
+        placeholder="Ej. Certificación Internacional Verenize">
+    </textarea>
+
+</div>
     <h3>Datos del evento</h3>
 
     <label>Nombre del evento</label>
