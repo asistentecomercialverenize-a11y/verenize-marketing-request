@@ -169,12 +169,7 @@ document.getElementById("otroTipoPendon").value.trim();
 
     }
 
-    if(!textoPendon){
-
-        alert("Escribe el texto que llevará el pendón.");
-
-        return;
-
+  
     }
 
 }
