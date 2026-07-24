@@ -259,17 +259,31 @@ button:hover{
 
     <label>Tipo de evento o campaña <span class="required">*</span></label>
 
-    <select id="tipoPendon">
+    <label>Tipo de evento o campaña <span class="required">*</span></label>
 
-        <option value="">Selecciona una opción</option>
-        <option value="Certificación">Certificación</option>
-        <option value="Master Class">Master Class</option>
-        <option value="Perfect Blonde">Perfect Blonde</option>
-        <option value="Beauty Brunch">Beauty Brunch</option>
-        <option value="Amamos los Rizos">Amamos los Rizos</option>
-        <option value="Otro">Otro</option>
+<select id="tipoPendon" onchange="mostrarOtroPendon()">
 
-    </select>
+    <option value="">Selecciona una opción</option>
+
+    <option value="Certificación">Certificación</option>
+    <option value="Master Class">Master Class</option>
+    <option value="Perfect Blonde">Perfect Blonde</option>
+    <option value="Beauty Brunch">Beauty Brunch</option>
+    <option value="Amamos los Rizos">Amamos los Rizos</option>
+    <option value="Otro">Otro</option>
+
+</select>
+
+<div id="otroPendon" class="hidden">
+
+    <label>Especifica el tipo de evento o campaña <span class="required">*</span></label>
+
+    <input
+        id="otroTipoPendon"
+        type="text"
+        placeholder="Ej. Expo Belleza, Lanzamiento, Congreso...">
+
+</div>
 
     <label>Texto que llevará el pendón <span class="required">*</span></label>
 
