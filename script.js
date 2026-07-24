@@ -1,7 +1,22 @@
 const whatsapp = "526624212850";
 
 function mostrarCampos(){
+function mostrarOtroPendon(){
 
+    const tipo = document.getElementById("tipoPendon").value;
+    const otro = document.getElementById("otroPendon");
+
+    if(tipo==="Otro"){
+
+        otro.classList.remove("hidden");
+
+    }else{
+
+        otro.classList.add("hidden");
+
+    }
+
+}
     const tipo = document.getElementById("tipo").value;
     const formato = document.getElementById("formato").value;
     
@@ -134,11 +149,21 @@ function enviarWhatsapp(){
     const direccion = document.getElementById("direccion").value.trim();
     const tipoPendon = document.getElementById("tipoPendon").value;
     const textoPendon = document.getElementById("textoPendon").value.trim();
-    if(tipo==="Pendón publicitario"){
+    const otroTipoPendon =
+document.getElementById("otroTipoPendon").value.trim();
+   if(tipo==="Pendón publicitario"){
 
     if(!tipoPendon){
 
         alert("Selecciona el tipo de evento o campaña.");
+
+        return;
+
+    }
+
+    if(tipoPendon==="Otro" && !otroTipoPendon){
+
+        alert("Especifica el tipo de evento o campaña.");
 
         return;
 
@@ -210,7 +235,11 @@ if(tipo==="Pendón publicitario"){
 
     mensaje += `%0A=== PENDÓN PUBLICITARIO ===%0A`;
 
-    mensaje += `Tipo de evento/campaña: ${tipoPendon}%0A`;
+    mensaje += `Tipo de evento/campaña: ${
+    tipoPendon==="Otro"
+    ? otroTipoPendon
+    : tipoPendon
+}%0A`;
 
     mensaje += `Texto del pendón: ${textoPendon}%0A`;
 
