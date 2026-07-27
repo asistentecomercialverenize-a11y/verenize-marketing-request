@@ -151,26 +151,7 @@ function enviarWhatsapp(){
     const textoPendon = document.getElementById("textoPendon").value.trim();
     const otroTipoPendon =
 document.getElementById("otroTipoPendon").value.trim();
-   if(tipo==="Pendón publicitario"){
 
-    if(!tipoPendon){
-
-        alert("Selecciona el tipo de evento o campaña.");
-
-        return;
-
-    }
-
-    if(tipoPendon==="Otro" && !otroTipoPendon){
-
-        alert("Especifica el tipo de evento o campaña.");
-
-        return;
-
-    }
-
-  
-    }
 
 }
     let mensaje = "Hola, quiero solicitar un material gráfico:%0A%0A";
